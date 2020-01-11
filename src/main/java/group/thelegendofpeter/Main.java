@@ -8,18 +8,27 @@ package group.thelegendofpeter;
 
 import java.awt.BorderLayout;
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferInt;
+
 import javax.swing.JFrame;
 
 //Klasse um das Fenster des Spiels einzurichten und die Spiellogik/grafik zu implementieren
 public class Main extends Canvas implements Runnable{
     private static final long serialVersionUID = 1L;
+    public int tickCount;
     boolean running; //Gibt an ob das Spiel läuft oder nicht
     public static final int Width = 160; //Die Breite des Fensters
     public static final int Height = Width / 12 *9; //Die Höhe des Fensters
     public static final int Scale = 3;//Der Größenskalierungsfaktor mit dem das Fenster vergrößert wird
     public static final String name = "TheLegendOfPeter";//Der Name des Fensters
     private JFrame frame; //Das Fenster
+    private BufferedImage image = new BufferedImage(Width,Height,BufferedImage.TYPE_INT_RGB);
+    private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
     
     public Main() //Konstruktor der Klasse
     {
@@ -56,26 +65,61 @@ public class Main extends Canvas implements Runnable{
     	int ticks = 0;
     	long lastTimer = System.currentTimeMillis();
     	double delta = 0;
+    	boolean shouldRender = false;
     	while(running)
     	{
     		long now = System.nanoTime();
-    		delta += (now - lastTime);
-    		tick();
+    		delta += (now - lastTime) / nsPerTick;
+    		lastTime = now;
+    		while(delta >= 1)
+    		{
+    			ticks++;
+    			tick();
+    			delta -= 1;
+    			shouldRender = true;
+    		}
+    		if(shouldRender)
+    		{
     		render();
+    		frames++;
+    		shouldRender = false;
+    		}
+    		if(System.currentTimeMillis() - lastTimer >= 1000)
+    		{
+    			lastTimer += 1000;
+    			System.out.println(frames + ", " + ticks);
+    			frames = 0;
+    			ticks = 0;
+    		}
     	}
     }
     
     public void tick() //Aktualiesert die Spiellogik
     {
+    	tickCount++;
     	
+    	for(int i = 0;i < pixels.length;i++)
+    	{
+    		pixels[i] = i+tickCount;
+    	}
     }
     
     public void render() //Aktualiesiert den Spieleanzeigebereich
     {
-    	
+    	BufferStrategy bs = getBufferStrategy();
+    	if(bs == null)
+    	{
+    		createBufferStrategy(3);
+    		return;
+    	}
+    	Graphics g = bs.getDrawGraphics();
+    	g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+    	g.dispose();
+    	bs.show();
     }
     public static void main(String args[]) //Startet das Spiel
     {
     	new Main().start();
     }
 }
+
