@@ -22,9 +22,9 @@ public class Main extends Canvas implements Runnable{
     private static final long serialVersionUID = 1L;
     public int tickCount;
     boolean running; //Gibt an ob das Spiel läuft oder nicht
-    public static final int Width = 160; //Die Breite des Fensters
-    public static final int Height = Width / 12 *9; //Die Höhe des Fensters
-    public static final int Scale = 3;//Der Größenskalierungsfaktor mit dem das Fenster vergrößert wird
+    public static final int Width = 320; //Die Breite des Fensters
+    public static final int Height = Width; //Die Höhe des Fensters
+    public static final int Scale = 2;//Der Größenskalierungsfaktor mit dem das Fenster vergrößert wird
     public static final String name = "TheLegendOfPeter";//Der Name des Fensters
     private JFrame frame; //Das Fenster
     private BufferedImage image = new BufferedImage(Width,Height,BufferedImage.TYPE_INT_RGB);
@@ -100,7 +100,7 @@ public class Main extends Canvas implements Runnable{
     	
     	for(int i = 0;i < pixels.length;i++)
     	{
-    		pixels[i] = i+tickCount;
+    		pixels[i] = i+((int)tickCount/2);
     	}
     }
     
