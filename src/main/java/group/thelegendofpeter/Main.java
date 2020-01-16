@@ -60,7 +60,7 @@ public class Main extends Canvas implements Runnable{
     public void run() //ruft die Spielelogik 60 mal in der Sekunde auf
     {
     	long lastTime = System.nanoTime();
-    	double nsPerTick = 1000000000D/60D;
+    	double nsPerTick = 1000000000D/250D;
     	int frames = 0;
     	int ticks = 0;
     	long lastTimer = System.currentTimeMillis();
