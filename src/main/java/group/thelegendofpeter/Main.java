@@ -22,7 +22,7 @@ public class Main extends Canvas implements Runnable{
     private static final long serialVersionUID = 1L;
     public int tickCount;
     boolean running; //Gibt an ob das Spiel läuft oder nicht
-    public static final int Width = 320; //Die Breite des Fensters
+    public static final int Width = 800; //Die Breite des Fensters
     public static final int Height = Width; //Die Höhe des Fensters
     public static final int Scale = 1;//Der Größenskalierungsfaktor mit dem das Fenster vergrößert wird
     public static final String name = "TheLegendOfPeter";//Der Name des Fensters
@@ -98,12 +98,12 @@ public class Main extends Canvas implements Runnable{
     public void tick() //Aktualiesert die Spiellogik
     {
     	tickCount++;
-    	int[][] pixel2d = new int[640][640];
+    	int[][] pixel2d = new int[Width][Height];
     	for(int x= 0;x<Width;x++)
     	{
     		for(int y = 0;y<Height;y++)
     		{
-    			pixel2d[x][y] = ((DataBufferInt)image.getRaster().getDataBuffer()).getData()[x * Height + y];
+    			pixel2d[x][y] = pixels[x * Height + y];
     		}
         }
         int xOff = 100;
@@ -119,7 +119,7 @@ public class Main extends Canvas implements Runnable{
     	{
     		for(int y = 0;y<Height;y++)
     		{
-    			((DataBufferInt)image.getRaster().getDataBuffer()).getData()[x * Height + y] = pixel2d[x][y];
+    			pixels[x * Height + y] = pixel2d[x][y];
     		}
     	}
     }
@@ -129,7 +129,7 @@ public class Main extends Canvas implements Runnable{
     	BufferStrategy bs = getBufferStrategy();
     	if(bs == null)
     	{
-    		createBufferStrategy(1);
+    		createBufferStrategy(2);
     		return;
     	}
     	
@@ -143,5 +143,4 @@ public class Main extends Canvas implements Runnable{
     	new Main().start();
     }
 }
-
 
