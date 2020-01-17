@@ -24,11 +24,12 @@ public class Main extends Canvas implements Runnable{
     boolean running; //Gibt an ob das Spiel läuft oder nicht
     public static final int Width = 320; //Die Breite des Fensters
     public static final int Height = Width; //Die Höhe des Fensters
-    public static final int Scale = 2;//Der Größenskalierungsfaktor mit dem das Fenster vergrößert wird
+    public static final int Scale = 1;//Der Größenskalierungsfaktor mit dem das Fenster vergrößert wird
     public static final String name = "TheLegendOfPeter";//Der Name des Fensters
     private JFrame frame; //Das Fenster
     private BufferedImage image = new BufferedImage(Width,Height,BufferedImage.TYPE_INT_RGB);
     private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
+    SpriteSheet sheet = new SpriteSheet("bush.jpg", 1, 1, 128, 128);
     
     public Main() //Konstruktor der Klasse
     {
@@ -60,7 +61,7 @@ public class Main extends Canvas implements Runnable{
     public void run() //ruft die Spielelogik 60 mal in der Sekunde auf
     {
     	long lastTime = System.nanoTime();
-    	double nsPerTick = 1000000000D/250D;
+    	double nsPerTick = 1000000000D/60D;
     	int frames = 0;
     	int ticks = 0;
     	long lastTimer = System.currentTimeMillis();
@@ -97,10 +98,29 @@ public class Main extends Canvas implements Runnable{
     public void tick() //Aktualiesert die Spiellogik
     {
     	tickCount++;
-    	
-    	for(int i = 0;i < pixels.length;i++)
+    	int[][] pixel2d = new int[640][640];
+    	for(int x= 0;x<Width;x++)
     	{
-    		pixels[i] = i+((int)tickCount/2);
+    		for(int y = 0;y<Height;y++)
+    		{
+    			pixel2d[x][y] = ((DataBufferInt)image.getRaster().getDataBuffer()).getData()[x * Height + y];
+    		}
+        }
+        int xOff = 100;
+        int yOff = 100;
+    	for(int x = xOff;x<128+xOff;x++)
+    	{
+    		for(int y = yOff;y<128+yOff;y++)
+    		{
+    			pixel2d[x][y] = sheet.getSpriteList().get(0).pixel[(x-xOff) * 128 + (y-yOff)];
+    		}
+    	}
+    	for(int x= 0;x<Width;x++)
+    	{
+    		for(int y = 0;y<Height;y++)
+    		{
+    			((DataBufferInt)image.getRaster().getDataBuffer()).getData()[x * Height + y] = pixel2d[x][y];
+    		}
     	}
     }
     
@@ -109,9 +129,10 @@ public class Main extends Canvas implements Runnable{
     	BufferStrategy bs = getBufferStrategy();
     	if(bs == null)
     	{
-    		createBufferStrategy(3);
+    		createBufferStrategy(1);
     		return;
     	}
+    	
     	Graphics g = bs.getDrawGraphics();
     	g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
     	g.dispose();
@@ -122,4 +143,5 @@ public class Main extends Canvas implements Runnable{
     	new Main().start();
     }
 }
+
 
