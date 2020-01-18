@@ -8,7 +8,6 @@ package group.thelegendofpeter;
 
 import java.awt.BorderLayout;
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
@@ -21,7 +20,7 @@ import javax.swing.JFrame;
 public class Main extends Canvas implements Runnable{
     private static final long serialVersionUID = 1L;
     public int tickCount;
-    boolean running; //Gibt an ob das Spiel läuft oder nicht
+    private boolean running; //Gibt an ob das Spiel läuft oder nicht
     public static final int Width = 800; //Die Breite des Fensters
     public static final int Height = Width; //Die Höhe des Fensters
     public static final int Scale = 1;//Der Größenskalierungsfaktor mit dem das Fenster vergrößert wird
@@ -29,7 +28,7 @@ public class Main extends Canvas implements Runnable{
     private JFrame frame; //Das Fenster
     private BufferedImage image = new BufferedImage(Width,Height,BufferedImage.TYPE_INT_RGB);
     private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
-    SpriteSheet sheet = new SpriteSheet("bush.jpg", 1, 1, 128, 128);
+    private SpriteSheet sheet = new SpriteSheet("bush.jpg", 1, 1, 128, 128);
     
     public Main() //Konstruktor der Klasse
     {
