@@ -1,15 +1,13 @@
 package group.thelegendofpeter;
 
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferInt;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
 public class SpriteSheet {
-	BufferedImage image;
+	private BufferedImage image;
 	private ArrayList<Sprite> sprites = new ArrayList<Sprite>();
 	private String path;
 	private int rows;
