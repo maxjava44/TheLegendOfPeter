@@ -2,7 +2,7 @@
 # TheLegendOfPeter
 Eine Legende lol
 
-# In der Schule haben wir Java 8 Update 151...
+In der Schule haben wir Java 8 Update 151, deshalb verwenden wir Corretto.
 
 Amazon Corretto 8 
 <https://docs.aws.amazon.com/corretto/latest/corretto-8-ug/downloads-list.html>
