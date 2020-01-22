@@ -28,7 +28,7 @@ public class Main extends Canvas implements Runnable{
     private JFrame frame; //Das Fenster
     private BufferedImage image = new BufferedImage(Width,Height,BufferedImage.TYPE_INT_RGB);
     private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
-    private SpriteSheet sheet = new SpriteSheet("bush.jpg", 1, 1, 128, 128);
+    private Screen screen = new Screen("level",new SpriteSheet("spritesheet.png", 4, 1, 128, 128));
     
     public Main() //Konstruktor der Klasse
     {
@@ -97,30 +97,7 @@ public class Main extends Canvas implements Runnable{
     public void tick() //Aktualiesert die Spiellogik
     {
     	tickCount++;
-    	int[][] pixel2d = new int[Width][Height];
-    	for(int x= 0;x<Width;x++)
-    	{
-    		for(int y = 0;y<Height;y++)
-    		{
-    			pixel2d[x][y] = pixels[x * Height + y];
-    		}
-        }
-        int xOff = 100;
-        int yOff = 100;
-    	for(int x = xOff;x<128+xOff;x++)
-    	{
-    		for(int y = yOff;y<128+yOff;y++)
-    		{
-    			pixel2d[x][y] = sheet.getSpriteList().get(0).pixel[(x-xOff) * 128 + (y-yOff)];
-    		}
-    	}
-    	for(int x= 0;x<Width;x++)
-    	{
-    		for(int y = 0;y<Height;y++)
-    		{
-    			pixels[x * Height + y] = pixel2d[x][y];
-    		}
-    	}
+        screen.loadLevel(1);
     }
     
     public void render() //Aktualiesiert den Spieleanzeigebereich
@@ -131,7 +108,7 @@ public class Main extends Canvas implements Runnable{
     		createBufferStrategy(2);
     		return;
     	}
-    	
+    	pixels = screen.getPixel();
     	Graphics g = bs.getDrawGraphics();
     	g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
     	g.dispose();
@@ -142,4 +119,3 @@ public class Main extends Canvas implements Runnable{
     	new Main().start();
     }
 }
-
