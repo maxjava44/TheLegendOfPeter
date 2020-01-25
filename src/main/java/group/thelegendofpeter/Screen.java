@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 public class Screen {
 
-    String path;
-    SpriteSheet sheet;
-    int[][] pixel2d = new int[Main.Width][Main.Height];
-    ArrayList<Sprite> sprites = new ArrayList<Sprite>();
+    private String path;
+    private SpriteSheet sheet;
+    private int[][] pixel2d = new int[Main.Width][Main.Height];
+    private ArrayList<Sprite> sprites = new ArrayList<Sprite>();
     public Screen(String pPath,SpriteSheet pSheet)
     {
         path = pPath;
