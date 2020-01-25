@@ -1,6 +1,8 @@
 package group.thelegendofpeter;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.util.Scanner;
 
 public class Screen {
@@ -17,45 +19,40 @@ public class Screen {
     public void loadLevel(int id)
     {
         try{
-            int[] contents = new int[3];
-            Scanner sc = new Scanner(this.getClass().getClassLoader().getResourceAsStream(path + id));  
-            sc.useDelimiter(",");
+            BufferedReader levelfile = new BufferedReader(new FileReader(new File(this.getClass().getClassLoader().getResource(path + id).toURI())));
+            int xOff = 0;
+            int yOff = 0;
+            int[] infos = new int[3];
             int counter = 0;
-            while (sc.hasNext())  //returns a boolean value  
-            {  
-                contents[counter] = Integer.parseInt(sc.next());
-                int xOff = contents[1];
-                int yOff = contents[2];
-                if(counter == 2)
-                {
-                    for(int x = xOff;x<128+xOff;x++)
+            String content;
+            while((content = levelfile.readLine())!= null)
+            {
+            	infos[counter] = Integer.parseInt(content);
+            	counter++;
+            	if(counter == 3)
+            	{
+            		xOff = infos[1];
+            		yOff = infos[2];
+            		for(int x = xOff;x<128+xOff;x++)
                     {
                         for(int y = yOff;y<128+yOff;y++)
-                	{
-                		pixel2d[x][y] = sheet.getSpriteList().get(contents[0]).pixel[(x-xOff) * 128 + (y-yOff)];
-                	}
+                        {
+                        	pixel2d[x][y] = sheet.getSpriteList().get(infos[0]).pixel[(x-xOff) * 128 + (y-yOff)];
+                        }
                     }
-                    counter = 0;
-                }
-                counter++;
-            }   
-            sc.close();
+            		counter = 0;
+            	}
+            }
+            levelfile.close();
         }catch(Exception e)
         {
             e.printStackTrace();
         }
     }
     
-    public int[] getPixel()
+    public int[][] getPixel()
     {
-        int[] pixels = new int[Main.Width*Main.Height];
-        for(int x= 0;x<Main.Width;x++)
-    	{
-    		for(int y = 0;y<Main.Height;y++)
-    		{
-    			pixels[x * Main.Height + y] = pixel2d[x][y];
-    		}
-    	}
-        return pixels;
+        return pixel2d;
     }
 }
+
