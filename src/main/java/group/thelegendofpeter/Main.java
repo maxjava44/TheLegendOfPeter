@@ -25,9 +25,7 @@ public class Main extends Canvas implements Runnable{
     public static final int Height = Width; //Die Höhe des Fensters
     public static final int Scale = 1;//Der Größenskalierungsfaktor mit dem das Fenster vergrößert wird
     public static final String name = "TheLegendOfPeter";//Der Name des Fensters
-    private JFrame frame; //Das Fenster
     private BufferedImage image = new BufferedImage(Width,Height,BufferedImage.TYPE_INT_RGB);
-    private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
     private Screen screen = new Screen("level",new SpriteSheet("spritesheet.png", 4, 1, 128, 128));
     
     public Main() //Konstruktor der Klasse
@@ -35,7 +33,7 @@ public class Main extends Canvas implements Runnable{
     	setMinimumSize(new Dimension(Width*Scale, Height*Scale));
     	setMaximumSize(new Dimension(Width*Scale, Height*Scale));
     	setPreferredSize(new Dimension(Width*Scale, Height*Scale));
-        frame = new JFrame(name); //Gibt dem Fenster den Namen name
+        JFrame frame = new JFrame(name); //erstellt das Fenster und gibt dem Fenster den Namen name
         frame.setMinimumSize(new Dimension(Width*Scale, Height*Scale));//Setzen die Größe des Fensters
     	frame.setMaximumSize(new Dimension(Width*Scale, Height*Scale));
     	frame.setPreferredSize(new Dimension(Width*Scale, Height*Scale));
@@ -102,6 +100,7 @@ public class Main extends Canvas implements Runnable{
     
     public void render() //Aktualiesiert den Spieleanzeigebereich
     {
+    	int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
     	screen.assemble();
     	for(int x= 0;x<Main.Width;x++)
     	{
