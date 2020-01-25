@@ -13,9 +13,6 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 
 import javax.swing.JFrame;
 
@@ -105,6 +102,7 @@ public class Main extends Canvas implements Runnable{
     
     public void render() //Aktualiesiert den Spieleanzeigebereich
     {
+    	screen.assemble();
     	for(int x= 0;x<Main.Width;x++)
     	{
     		for(int y = 0;y<Main.Height;y++)
