@@ -3,13 +3,14 @@ package group.thelegendofpeter;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Screen {
 
     String path;
     SpriteSheet sheet;
     int[][] pixel2d = new int[Main.Width][Main.Height];
+    ArrayList<Sprite> sprites = new ArrayList<Sprite>();
     public Screen(String pPath,SpriteSheet pSheet)
     {
         path = pPath;
@@ -18,10 +19,9 @@ public class Screen {
     
     public void loadLevel(int id)
     {
+    	sprites.clear();
         try{
             BufferedReader levelfile = new BufferedReader(new FileReader(new File(this.getClass().getClassLoader().getResource(path + id).toURI())));
-            int xOff = 0;
-            int yOff = 0;
             int[] infos = new int[3];
             int counter = 0;
             String content;
@@ -31,15 +31,8 @@ public class Screen {
             	counter++;
             	if(counter == 3)
             	{
-            		xOff = infos[1];
-            		yOff = infos[2];
-            		for(int x = xOff;x<128+xOff;x++)
-                    {
-                        for(int y = yOff;y<128+yOff;y++)
-                        {
-                        	pixel2d[x][y] = sheet.getSpriteList().get(infos[0]).pixel[(x-xOff) * 128 + (y-yOff)];
-                        }
-                    }
+            		Sprite sprite = new Sprite(infos[1],infos[2],sheet.getSpriteList().get(infos[0]).getPixel());
+            		sprites.add(sprite);
             		counter = 0;
             	}
             }
@@ -50,9 +43,26 @@ public class Screen {
         }
     }
     
+    public void assemble()
+    {
+    	for(Sprite sprite : sprites)
+    	{
+    		int xOff = sprite.getX();
+    		int yOff = sprite.getY();
+    		for(int x = xOff;x<128+xOff;x++)
+            {
+                for(int y = yOff;y<128+yOff;y++)
+                {
+                	pixel2d[x][y] = sprite.getPixel()[(x-xOff) * 128 + (y-yOff)];
+                }
+            }
+    	}
+    }
+    
     public int[][] getPixel()
     {
-        return pixel2d;
+    	return pixel2d;
     }
+    
 }
 
