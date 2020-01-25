@@ -13,6 +13,9 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 
 import javax.swing.JFrame;
 
@@ -96,19 +99,25 @@ public class Main extends Canvas implements Runnable{
     
     public void tick() //Aktualiesert die Spiellogik
     {
+    	screen.loadLevel(1);
     	tickCount++;
-        screen.loadLevel(1);
     }
     
     public void render() //Aktualiesiert den Spieleanzeigebereich
     {
+    	for(int x= 0;x<Main.Width;x++)
+    	{
+    		for(int y = 0;y<Main.Height;y++)
+    		{
+    			pixels[x * Main.Height + y] = screen.getPixel()[x][y];
+    		}
+    	}
     	BufferStrategy bs = getBufferStrategy();
     	if(bs == null)
     	{
     		createBufferStrategy(2);
     		return;
     	}
-    	pixels = screen.getPixel();
     	Graphics g = bs.getDrawGraphics();
     	g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
     	g.dispose();
