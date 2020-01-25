@@ -1,18 +1,38 @@
 package group.thelegendofpeter;
 
 public class Sprite {
-	public int x1; 
-	public int y1;
-	public int x2;
-	public int y2;
-	public int[] pixel;
+	private int x; 
+	private int y;
+	private int[] pixel;
 	
-	public Sprite(int px1,int py1,int px2,int py2,int[] pPixel)
+	public Sprite(int pX,int pY,int[] pPixel)
 	{
-		x1 = px1;
-		y1 = py1;
-		x2 = px2;
-		y2 = py2;
+		x = pX;
+		y = pY;
 		pixel = pPixel;
+	}
+	
+	public int[] getPixel() {
+		return pixel;
+	}
+	
+	public void setPixel(int[] pPixel) {
+		pixel = pPixel;
+	}
+	
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
+	}
+	
+	public void setX(int pX) {
+		x = pX;
+	}
+	
+	public void setY(int pY) {
+		y = pY;
 	}
 }
