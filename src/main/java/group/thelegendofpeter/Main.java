@@ -34,6 +34,7 @@ public class Main extends Canvas implements Runnable{
     	setMaximumSize(new Dimension(Width*Scale, Height*Scale));
     	setPreferredSize(new Dimension(Width*Scale, Height*Scale));
         JFrame frame = new JFrame(name); //erstellt das Fenster und gibt dem Fenster den Namen name
+        frame.addKeyListener(screen);
         frame.setMinimumSize(new Dimension(Width*Scale, Height*Scale));//Setzen die Größe des Fensters
     	frame.setMaximumSize(new Dimension(Width*Scale, Height*Scale));
     	frame.setPreferredSize(new Dimension(Width*Scale, Height*Scale));
@@ -57,6 +58,7 @@ public class Main extends Canvas implements Runnable{
     
     public void run() //ruft die Spielelogik 60 mal in der Sekunde auf
     {
+    	screen.loadLevel(1);
     	long lastTime = System.nanoTime();
     	double nsPerTick = 1000000000D/60D;
     	int frames = 0;
@@ -94,7 +96,6 @@ public class Main extends Canvas implements Runnable{
     
     public void tick() //Aktualiesert die Spiellogik
     {
-    	screen.loadLevel(1);
     	tickCount++;
     }
     
