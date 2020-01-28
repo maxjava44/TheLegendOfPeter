@@ -114,7 +114,7 @@ public class Main extends Canvas implements Runnable{
     	BufferStrategy bs = getBufferStrategy();
     	if(bs == null)
     	{
-    		createBufferStrategy(2);
+    		createBufferStrategy(3);
     		return;
     	}
     	Graphics g = bs.getDrawGraphics();
