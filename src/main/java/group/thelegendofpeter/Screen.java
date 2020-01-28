@@ -12,7 +12,7 @@ public class Screen {
         {
             for(int y = 0;y<Main.Height;y++)
             {
-            	pixel2d[x][y] = 0;
+            	pixel2d[x][y] = java.awt.Color.BLACK.getRGB();
             }
         }
     	for(Sprite sprite : sprites)
