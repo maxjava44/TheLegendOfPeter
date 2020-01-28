@@ -26,7 +26,7 @@ public class Main extends Canvas implements Runnable{
     public static final int Scale = 1;//Der Größenskalierungsfaktor mit dem das Fenster vergrößert wird
     public static final String name = "TheLegendOfPeter";//Der Name des Fensters
     private BufferedImage image = new BufferedImage(Width,Height,BufferedImage.TYPE_INT_RGB);
-    private Screen screen = new Screen("level",new SpriteSheet("spritesheet.png", 4, 1, 128, 128));
+    private Game game = new Game(new SpriteSheet("spritesheet.png", 4, 1, 128, 128));
     
     public Main() //Konstruktor der Klasse
     {
@@ -34,7 +34,7 @@ public class Main extends Canvas implements Runnable{
     	setMaximumSize(new Dimension(Width*Scale, Height*Scale));
     	setPreferredSize(new Dimension(Width*Scale, Height*Scale));
         JFrame frame = new JFrame(name); //erstellt das Fenster und gibt dem Fenster den Namen name
-        frame.addKeyListener(screen);
+        frame.addKeyListener(game);
         frame.setMinimumSize(new Dimension(Width*Scale, Height*Scale));//Setzen die Größe des Fensters
     	frame.setMaximumSize(new Dimension(Width*Scale, Height*Scale));
     	frame.setPreferredSize(new Dimension(Width*Scale, Height*Scale));
@@ -58,7 +58,7 @@ public class Main extends Canvas implements Runnable{
     
     public void run() //ruft die Spielelogik 60 mal in der Sekunde auf
     {
-    	screen.loadLevel(1);
+    	game.loadLevel(1);
     	long lastTime = System.nanoTime();
     	double nsPerTick = 1000000000D/60D;
     	int frames = 0;
@@ -96,18 +96,19 @@ public class Main extends Canvas implements Runnable{
     
     public void tick() //Aktualiesert die Spiellogik
     {
+    	game.doLogic();
     	tickCount++;
     }
     
     public void render() //Aktualiesiert den Spieleanzeigebereich
     {
     	int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
-    	screen.assemble();
+    	game.getScreen().assemble();
     	for(int x= 0;x<Main.Width;x++)
     	{
     		for(int y = 0;y<Main.Height;y++)
     		{
-    			pixels[x * Main.Height + y] = screen.getPixel()[x][y];
+    			pixels[x * Main.Height + y] = game.getScreen().getPixel()[x][y];
     		}
     	}
     	BufferStrategy bs = getBufferStrategy();
