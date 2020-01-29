@@ -35,7 +35,7 @@ public class Game implements KeyListener {
     {
     	sprites.clear();
         try{
-            BufferedReader levelfile = new BufferedReader(new FileReader(new File(this.getClass().getClassLoader().getResource("level" + id).toURI())));
+            BufferedReader levelfile = new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("level" + id)));
             int[] infos = new int[3];
             int counter = 0;
             String content;
