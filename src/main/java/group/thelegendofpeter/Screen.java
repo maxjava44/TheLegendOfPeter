@@ -19,11 +19,11 @@ public class Screen {
     	{
     		int yOff = sprite.getY();
     		int xOff = sprite.getX();
-    		for(int x = xOff;x<128+xOff;x++)
+    		for(int x = xOff;x<64+xOff;x++)
     		{
-                for(int y = yOff;y<128+yOff;y++)
+                for(int y = yOff;y<64+yOff;y++)
                 {
-                	pixel2d[y][x] = sprite.getPixel()[(y-yOff) * 128 + (x-xOff)];
+                	pixel2d[y][x] = sprite.getPixel()[(y-yOff) * 64 + (x-xOff)];
                 }
             }
     	}
