@@ -102,14 +102,9 @@ public class Main extends Canvas implements Runnable{
     
     public void render() //Aktualiesiert den Spieleanzeigebereich
     {
-    	int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
-    	game.getScreen().assemble();
-    	for(int x= 0;x<Main.Width;x++)
+    	for(int i= 0;i<pixels.length;i++)
     	{
-    		for(int y = 0;y<Main.Height;y++)
-    		{
-    			pixels[x * Main.Height + y] = game.getScreen().getPixel()[x][y];
-    		}
+    		pixels[i] = new java.awt.Color(0,0,0,255).getRGB();
     	}
     	BufferStrategy bs = getBufferStrategy();
     	if(bs == null)
@@ -118,7 +113,16 @@ public class Main extends Canvas implements Runnable{
     		return;
     	}
     	Graphics g = bs.getDrawGraphics();
-    	g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+    	while(!g.drawImage(image, 0, 0, getWidth(), getHeight(), null)) {}
+    	game.getScreen().assemble();
+    	for(int x= 0;x<Main.Width;x++)
+    	{
+    		for(int y = 0;y<Main.Height;y++)
+    		{
+    			pixels[x * Main.Height + y] = game.getScreen().getPixel()[x][y];
+    		}
+    	}
+    	while(!g.drawImage(image, 0, 0, getWidth(), getHeight(), null)) {}
     	g.dispose();
     	bs.show();
     }
