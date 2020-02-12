@@ -26,7 +26,7 @@ public class Main extends Canvas implements Runnable{
     public static final int Scale = 1;//Der Größenskalierungsfaktor mit dem das Fenster vergrößert wird
     public static final String name = "TheLegendOfPeter";//Der Name des Fensters
     private BufferedImage image = new BufferedImage(Width,Height,BufferedImage.TYPE_INT_ARGB);
-    private Game game = new Game(new SpriteSheet("spritesheet.png", 4, 1, 64, 64));
+    private Game game = new Game(new SpriteSheet("spritesheet.png", 5, 1, 64, 64));
     
     public Main() //Konstruktor der Klasse
     {
