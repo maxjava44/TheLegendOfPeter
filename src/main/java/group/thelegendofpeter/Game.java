@@ -16,6 +16,7 @@ public class Game implements KeyListener {
 	private ArrayList<Sprite> sprites = new ArrayList<Sprite>();
 	SpriteSheet sheet;
 	Screen screen = new Screen();
+	int levelid = 11;
 	
 	public Game(SpriteSheet pSheet)
 	{
@@ -30,14 +31,59 @@ public class Game implements KeyListener {
 	
 	public void doLogic()
 	{
-		
+		System.out.println(player.getSprite().getX());
 	}
 	
-	public void loadLevel(int id)
+	public void figureLevelOut()
+	{
+		if(player.getSprite().getX()>=730 && levelid != 13 && levelid != 23 && levelid != 33)
+		{
+			levelid++;
+			loadLevel();
+			player.getSprite().setX(1);
+			return;
+		}else if(player.getSprite().getX()<=0 && levelid != 11 && levelid != 21 && levelid != 31)
+		{
+			levelid--;
+			loadLevel();
+			player.getSprite().setX(730);
+			return;
+		}else if(player.getSprite().getY()>=730 && levelid != 31 && levelid != 32 && levelid != 33)
+		{
+			levelid = levelid + 10;
+			loadLevel();
+			player.getSprite().setY(1);
+			return;
+		}else if(player.getSprite().getY()<=0 && levelid != 11 && levelid != 12 && levelid != 13)
+		{
+			levelid = levelid - 10;
+			loadLevel();
+			player.getSprite().setY(730);
+			return;
+		}else if(player.getSprite().getX() < 0)
+		{
+			player.getSprite().setX(player.getSprite().getX() + player.getSpeed());
+			return;
+		}else if(player.getSprite().getX() > 730)
+		{
+			player.getSprite().setX(player.getSprite().getX() - player.getSpeed());
+			return;
+		}else if(player.getSprite().getY() < 0)
+		{
+			player.getSprite().setY(player.getSprite().getY() + player.getSpeed());
+			return;
+		}else if(player.getSprite().getY() > 730)
+		{
+			player.getSprite().setY(player.getSprite().getY() - player.getSpeed());
+			return;
+		}
+	}
+	
+	public void loadLevel()
     {
     	sprites.clear();
         try{
-            BufferedReader levelfile = new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("level" + id)));
+            BufferedReader levelfile = new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("level" + levelid)));
             int[] infos = new int[3];
             int counter = 0;
             String content;
@@ -63,10 +109,10 @@ public class Game implements KeyListener {
 	 public boolean collision()
 	    {
 	    	Rectangle playerrec = new Rectangle(sprites.get(0).getX(),sprites.get(0).getY(),64,64);
-	    	Rectangle screen = new Rectangle(0,0,Main.Width-64,Main.Height-64);
-	    	if(!playerrec.intersects(screen) || player.getSprite().getY() < 0 || player.getSprite().getX() < 0)
+	    	if(player.getSprite().getX() < 0 || player.getSprite().getX() > 730 || player.getSprite().getY() < 0 || player.getSprite().getY() > 730)
 	    	{
-	    		return true;
+	    		figureLevelOut();
+	    		return false;
 	    	}
 	    	for(int i = 1;i<sprites.size();i++)
 	    	{
@@ -103,7 +149,6 @@ public class Game implements KeyListener {
 				player.getSprite().setX(prevX);
 				player.getSprite().setY(prevY);
 			}
-			System.out.println("X:"+player.getSprite().getX()+" Y:"+player.getSprite().getY());
 		}
 	@Override
 	public void keyReleased(KeyEvent e) {
