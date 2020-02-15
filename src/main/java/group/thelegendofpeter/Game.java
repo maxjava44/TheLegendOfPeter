@@ -34,49 +34,30 @@ public class Game implements KeyListener {
 		System.out.println(player.getSprite().getX());
 	}
 	
-	public void figureLevelOut()
+	public boolean figureLevelOut()
 	{
 		if(player.getSprite().getX()>=730 && levelid != 13 && levelid != 23 && levelid != 33)
 		{
 			levelid++;
 			loadLevel();
-			player.getSprite().setX(1);
-			return;
+			return true;
 		}else if(player.getSprite().getX()<=0 && levelid != 11 && levelid != 21 && levelid != 31)
 		{
 			levelid--;
 			loadLevel();
-			player.getSprite().setX(730);
-			return;
+			return true;
 		}else if(player.getSprite().getY()>=730 && levelid != 31 && levelid != 32 && levelid != 33)
 		{
 			levelid = levelid + 10;
 			loadLevel();
-			player.getSprite().setY(1);
-			return;
+			return true;
 		}else if(player.getSprite().getY()<=0 && levelid != 11 && levelid != 12 && levelid != 13)
 		{
 			levelid = levelid - 10;
 			loadLevel();
-			player.getSprite().setY(730);
-			return;
-		}else if(player.getSprite().getX() < 0)
-		{
-			player.getSprite().setX(player.getSprite().getX() + player.getSpeed());
-			return;
-		}else if(player.getSprite().getX() > 730)
-		{
-			player.getSprite().setX(player.getSprite().getX() - player.getSpeed());
-			return;
-		}else if(player.getSprite().getY() < 0)
-		{
-			player.getSprite().setY(player.getSprite().getY() + player.getSpeed());
-			return;
-		}else if(player.getSprite().getY() > 730)
-		{
-			player.getSprite().setY(player.getSprite().getY() - player.getSpeed());
-			return;
+			return true;
 		}
+		return false;
 	}
 	
 	public void loadLevel()
@@ -109,11 +90,6 @@ public class Game implements KeyListener {
 	 public boolean collision()
 	    {
 	    	Rectangle playerrec = new Rectangle(sprites.get(0).getX(),sprites.get(0).getY(),64,64);
-	    	if(player.getSprite().getX() < 0 || player.getSprite().getX() > 730 || player.getSprite().getY() < 0 || player.getSprite().getY() > 730)
-	    	{
-	    		figureLevelOut();
-	    		return false;
-	    	}
 	    	for(int i = 1;i<sprites.size();i++)
 	    	{
 	    		Rectangle sprite = new Rectangle(sprites.get(i).getX(),sprites.get(i).getY(),64,64);
@@ -149,6 +125,14 @@ public class Game implements KeyListener {
 				player.getSprite().setX(prevX);
 				player.getSprite().setY(prevY);
 			}
+			if(player.getSprite().getX() < 0 || player.getSprite().getX() > 730 || player.getSprite().getY() < 0 || player.getSprite().getY() > 730)
+	    	{
+				if(!figureLevelOut())
+				{
+					player.getSprite().setX(prevX);
+					player.getSprite().setY(prevY);
+				}
+	    	}
 		}
 	@Override
 	public void keyReleased(KeyEvent e) {
