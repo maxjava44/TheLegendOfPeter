@@ -10,6 +10,8 @@ import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
+
 public class Game implements KeyListener {
 	private Player player;
 	private ArrayList<Mob> mobs = new ArrayList<Mob>();
@@ -36,7 +38,7 @@ public class Game implements KeyListener {
 	
 	public boolean figureLevelOut()
 	{
-		if(player.getSprite().getX()>=730 && levelid != 13 && levelid != 23 && levelid != 33)
+		if(player.getSprite().getX()>=704 && levelid != 13 && levelid != 23 && levelid != 33)
 		{
 			levelid++;
 			loadLevel();
@@ -46,7 +48,7 @@ public class Game implements KeyListener {
 			levelid--;
 			loadLevel();
 			return true;
-		}else if(player.getSprite().getY()>=730 && levelid != 31 && levelid != 32 && levelid != 33)
+		}else if(player.getSprite().getY()>=704 && levelid != 31 && levelid != 32 && levelid != 33)
 		{
 			levelid = levelid + 10;
 			loadLevel();
@@ -125,7 +127,7 @@ public class Game implements KeyListener {
 				player.getSprite().setX(prevX);
 				player.getSprite().setY(prevY);
 			}
-			if(player.getSprite().getX() < 0 || player.getSprite().getX() > 730 || player.getSprite().getY() < 0 || player.getSprite().getY() > 730)
+			if(player.getSprite().getX() < 0 || player.getSprite().getX() > 704 || player.getSprite().getY() < 0 || player.getSprite().getY() > 704)
 	    	{
 				if(!figureLevelOut())
 				{
