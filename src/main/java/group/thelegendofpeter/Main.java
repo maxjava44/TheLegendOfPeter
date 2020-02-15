@@ -8,6 +8,7 @@ package group.thelegendofpeter;
 
 import java.awt.BorderLayout;
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
@@ -21,7 +22,7 @@ public class Main extends Canvas implements Runnable{
     private static final long serialVersionUID = 1L;
     public int tickCount;
     private boolean running; //Gibt an ob das Spiel läuft oder nicht
-    public static final int Width = 800; //Die Breite des Fensters
+    public static final int Width = 768; //Die Breite des Fensters
     public static final int Height = Width; //Die Höhe des Fensters
     public static final int Scale = 1;//Der Größenskalierungsfaktor mit dem das Fenster vergrößert wird
     public static final String name = "TheLegendOfPeter";//Der Name des Fensters
@@ -103,9 +104,13 @@ public class Main extends Canvas implements Runnable{
     
     public void render() //Aktualiesiert den Spieleanzeigebereich
     {
-    	for(int i= 0;i<pixels.length;i++)
+    	game.getScreen().assemble();
+    	for(int x= 0;x<Main.Width;x++)
     	{
-    		pixels[i] = new java.awt.Color(0,0,0,255).getRGB();
+    		for(int y = 0;y<Main.Height;y++)
+    		{
+    			pixels[x * Main.Height + y] = game.getScreen().getPixel()[x][y];
+    		}
     	}
     	BufferStrategy bs = getBufferStrategy();
     	if(bs == null)
@@ -115,18 +120,10 @@ public class Main extends Canvas implements Runnable{
     	}
     	Graphics g = bs.getDrawGraphics();
     	while(!g.drawImage(image, 0, 0, getWidth(), getHeight(), null)) {}
-    	game.getScreen().assemble();
-    	for(int x= 0;x<Main.Width;x++)
-    	{
-    		for(int y = 0;y<Main.Height;y++)
-    		{
-    			pixels[x * Main.Height + y] = game.getScreen().getPixel()[x][y];
-    		}
-    	}
-    	while(!g.drawImage(image, 0, 0, getWidth(), getHeight(), null)) {}
     	g.dispose();
     	bs.show();
     }
+    
     public static void main(String args[]) //Startet das Spiel
     {
     	new Main().start();
