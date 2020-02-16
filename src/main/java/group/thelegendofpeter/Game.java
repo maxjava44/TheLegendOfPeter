@@ -102,10 +102,10 @@ public class Game implements KeyListener {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			// TODO Auto-generated method stub
-			int prevX = sprites.get(0).getX();
-			int prevY = sprites.get(0).getY();
 			if(!(sprites.isEmpty()))
 			{
+				int prevX = sprites.get(0).getX();
+				int prevY = sprites.get(0).getY();
 				switch(e.getKeyChar())
 				{
 				case 'w':player.getSprite().setY(player.getSprite().getY()-player.getSpeed());
@@ -116,6 +116,7 @@ public class Game implements KeyListener {
 				break;
 				case 'd':player.getSprite().setX(player.getSprite().getX()+player.getSpeed());
 				break;
+				default:break;
 				}
 			}
 			if(collision())
