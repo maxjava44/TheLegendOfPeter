@@ -3,14 +3,14 @@ package group.thelegendofpeter;
 import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.imageio.ImageIO;
 
 public class Screen {
 
     private int[][] pixel2d = new int[Main.Width][Main.Height];
-    ArrayList<Sprite> sprites;
+    CopyOnWriteArrayList<Sprite> sprites = new CopyOnWriteArrayList<Sprite>();
     Sprite background;
     public Screen(){
     	try {
@@ -27,13 +27,6 @@ public class Screen {
     
     public void assemble()
     {
-    	for(int x = 0;x<Main.Width;x++)
-        {
-            for(int y = 0;y<Main.Height;y++)
-            {
-            	pixel2d[x][y] = new Color(0,0,0,255).getRGB();
-            }
-        }
     	int xHelp = 0;
     	int yHelp = 0;
     	for(int i = 0;i<12*12;i++)
@@ -52,6 +45,7 @@ public class Screen {
     			yHelp = yHelp + 64;
     		}
     	}
+    	int[][] pixel2dbefore = pixel2d;
     	for(Sprite sprite : sprites)
     	{
     		int yOff = sprite.getY();
@@ -60,13 +54,28 @@ public class Screen {
     		{
                 for(int y = yOff;y<64+yOff;y++)
                 {
-                	pixel2d[y][x] = sprite.getPixel()[(y-yOff) * 64 + (x-xOff)];
+                	Color c = new Color(sprite.getPixel()[(y-yOff) * 64 + (x-xOff)],true);
+    	            int r = c.getRed();
+    	            int g = c.getGreen();
+    	            int b = c.getBlue();
+    	            int a = c.getAlpha();
+    	            if(r > 200 && g > 200 && b > 200)
+    	            {
+    	            	pixel2d[y][x] = pixel2dbefore[y][x];
+    	            }
+    	            else if (a == 0) {
+    	                pixel2d[y][x] = pixel2dbefore[y][x]; 
+    	            }
+                	else
+                	{
+                		pixel2d[y][x] = sprite.getPixel()[(y-yOff) * 64 + (x-xOff)];
+                	}
                 }
             }
     	}
     }
     
-    public void setSprites(ArrayList<Sprite> pSprites)
+    public void setSprites(CopyOnWriteArrayList<Sprite> pSprites)
     {
     	sprites = pSprites;
     }
@@ -76,4 +85,3 @@ public class Screen {
     	return pixel2d;
     }
 }
-
