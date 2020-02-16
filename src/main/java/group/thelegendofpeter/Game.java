@@ -123,13 +123,10 @@ public class Game implements KeyListener {
 				player.getSprite().setX(prevX);
 				player.getSprite().setY(prevY);
 			}
-			if(player.getSprite().getX() < 0 || player.getSprite().getX() > 704 || player.getSprite().getY() < 0 || player.getSprite().getY() > 704)
+			if(!figureLevelOut() && (player.getSprite().getX() < 0 || player.getSprite().getX() > 704 || player.getSprite().getY() < 0 || player.getSprite().getY() > 704))
 	    	{
-				if(!figureLevelOut())
-				{
-					player.getSprite().setX(prevX);
-					player.getSprite().setY(prevY);
-				}
+				player.getSprite().setX(prevX);
+				player.getSprite().setY(prevY);
 	    	}
 		}
 	@Override
