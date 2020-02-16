@@ -5,13 +5,9 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import javax.imageio.ImageIO;
 
 public class Game implements KeyListener {
 	private Player player;
