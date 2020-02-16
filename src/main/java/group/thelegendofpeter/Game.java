@@ -108,15 +108,31 @@ public class Game implements KeyListener {
 				int prevY = sprites.get(0).getY();
 				switch(e.getKeyChar())
 				{
-				case 'w':player.getSprite().setY(player.getSprite().getY()-player.getSpeed());
+                                    
+				case 'w':player.getSprite().setY(player.getSprite().getY()-player.getSpeed());  
+                                Sound  Sound=new Sound("nischt");//Pfad nicht relevant
+                                 Sound.Sound_Start2();
 				break;
 				case 's':player.getSprite().setY(player.getSprite().getY()+player.getSpeed());
+                                Sound  Sound2=new Sound("nischt");//Pfad nicht relevant
+                                 Sound2.Sound_Start2();
+                                 
 				break;
 				case 'a':player.getSprite().setX(player.getSprite().getX()-player.getSpeed());
+                                 Sound  Sound3=new Sound("nischt");//Pfad nicht relevant
+                                 Sound3.Sound_Start2();
+                                
 				break;
-				case 'd':player.getSprite().setX(player.getSprite().getX()+player.getSpeed());
+				case 'd':player.getSprite().setX(player.getSprite().getX()+player.getSpeed());                     
+                                   Sound  Sound4=new Sound("nischt");//Pfad nicht relevant
+                                 Sound4.Sound_Start2();
 				break;
+                                
+                               
+                               
+                                
 				default:break;
+                                
 				}
 			}
 			if(collision())
@@ -137,3 +153,4 @@ public class Game implements KeyListener {
 	public void keyTyped(KeyEvent e) {
 	}
 }
+
