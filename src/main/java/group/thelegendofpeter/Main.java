@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package group.thelegendofpeter;
 
 import java.awt.BorderLayout;
@@ -51,6 +45,8 @@ public class Main extends Canvas implements Runnable{
     {
     	running = true;
     	new Thread(this).start();
+         Sound  Sound=new Sound("nischt wichtig"); //Gedudel starten... Pfad hier nicht relevant
+        Sound.Sound_Start();
     }
     
     public synchronized void stop() //Stoppt das Spiel
