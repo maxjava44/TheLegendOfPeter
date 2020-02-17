@@ -68,13 +68,8 @@ class Sound {
       public void Sound_Start()
     {
        Sound test; 
-         try {
-             test = new Sound(this.getClass().getClassLoader().getResourceAsStream("sound/Purple Planet Music - Space Journey (1_20).wav"));
-             test.start_LOOP();
-         } catch (URISyntaxException ex) {
-             Logger.getLogger(Sound.class.getName()).log(Level.SEVERE, null, ex);
-         }
-        
+       test = new Sound(this.getClass().getClassLoader().getResourceAsStream("sound/Purple Planet Music - Space Journey (1_20).wav"));
+       test.start_LOOP();
     }
        public void Sound_Start2()
     {
