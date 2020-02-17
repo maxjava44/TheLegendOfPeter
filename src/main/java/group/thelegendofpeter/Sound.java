@@ -28,11 +28,11 @@ class Sound {
 
      Clip clip;
    
-    public Sound(File file)
+    public Sound(InputStream stream)
     {
         try
         {
-            AudioInputStream eingabe = AudioSystem.getAudioInputStream(file);
+            AudioInputStream eingabe = AudioSystem.getAudioInputStream(stream);
            
             clip = AudioSystem.getClip();
             clip.open(eingabe);
@@ -69,7 +69,7 @@ class Sound {
     {
        Sound test; 
          try {
-             test = new Sound(new File(this.getClass().getClassLoader().getResource("sound/Purple Planet Music - Space Journey (1_20).wav").toURI()));
+             test = new Sound(this.getClass().getClassLoader().getResourceAsStream("sound/Purple Planet Music - Space Journey (1_20).wav"));
              test.start_LOOP();
          } catch (URISyntaxException ex) {
              Logger.getLogger(Sound.class.getName()).log(Level.SEVERE, null, ex);
