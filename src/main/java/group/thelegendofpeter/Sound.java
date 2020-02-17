@@ -10,52 +10,29 @@ package group.thelegendofpeter;
  * @author Maximilian Pitzke
  */
 import java.io.File;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineEvent;
-import javax.swing.JOptionPane;
 /**
  *
- * @author maximilian.pitzke
+ * @author Tristan Michels
  */
 class Sound {
 
-    int f;
- /* public void berechneWas() {
 
-        Object lock = new Object();
+ 
+    
 
-        //String soundFile = "H:/Dokumente/Laser_Shoot.wav";
-
-        String soundFile = "D:/0_Downloadsfuerandere/E6C2/C2_FUll_mitLE/MB_C2_E5/Sound-10er/fahrt2.wav";
-
-
-        
-        for(int i=0; i<1; i++) {
-		
-        
-        System.out.println("Now the output is redirected!"+i);
-         
-         Sound test = new Sound("C:\\musik.wav");
-        test.start();
-        
-        }
-  }
-   public void start()
-    {
-        clip.start();
-    }
-}
-
-*/
      Clip clip;
    
-    public Sound(String path)
+    public Sound(File file)
     {
         try
         {
-            AudioInputStream eingabe = AudioSystem.getAudioInputStream(new File(path));
+            AudioInputStream eingabe = AudioSystem.getAudioInputStream(file);
            
             clip = AudioSystem.getClip();
             clip.open(eingabe);
@@ -90,16 +67,21 @@ class Sound {
    
       public void Sound_Start()
     {
-       Sound test = new Sound("C:/A_Netbeans/TheLegendOfPeter-master/Purple Planet Music - Space Journey (1_20).wav"); 
-        test.start_LOOP();
+       Sound test; 
+         try {
+             test = new Sound(new File(this.getClass().getClassLoader().getResource("sound/Purple Planet Music - Space Journey (1_20).wav").toURI()));
+             test.start_LOOP();
+         } catch (URISyntaxException ex) {
+             Logger.getLogger(Sound.class.getName()).log(Level.SEVERE, null, ex);
+         }
         
     }
        public void Sound_Start2()
     {
        
               
-                  Sound test = new Sound("C:/A_Netbeans/TheLegendOfPeter-master/Lauf.wav"); 
-                    test.start();
+                  //Sound test = new Sound("C:/A_Netbeans/TheLegendOfPeter-master/Lauf.wav"); 
+                   // test.start();
                     
               
            }
