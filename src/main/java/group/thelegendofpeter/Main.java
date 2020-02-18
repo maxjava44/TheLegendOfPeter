@@ -8,8 +8,9 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+//...
 
-import javax.swing.JFrame;
+import javax.swing.JFrame; 
 
 //Klasse um das Fenster des Spiels einzurichten und die Spiellogik/grafik zu implementieren
 public class Main extends Canvas implements Runnable{
@@ -29,7 +30,7 @@ public class Main extends Canvas implements Runnable{
     	setMinimumSize(new Dimension(Width*Scale, Height*Scale));
     	setMaximumSize(new Dimension(Width*Scale, Height*Scale));
     	setPreferredSize(new Dimension(Width*Scale, Height*Scale));
-        JFrame frame = new JFrame(name); //erstellt das Fenster und gibt dem Fenster den Namen name
+        JFrame frame = new JFrame(name); //Erstellt das Fenster und gibt dem Fenster den Namen ,,name"
         frame.addKeyListener(game);
         frame.setMinimumSize(new Dimension(Width*Scale, Height*Scale));//Setzen die Größe des Fensters
     	frame.setMaximumSize(new Dimension(Width*Scale, Height*Scale));
@@ -54,7 +55,7 @@ public class Main extends Canvas implements Runnable{
     	running = false;
     }
     
-    public void run() //ruft die Spielelogik 60 mal in der Sekunde auf
+    public void run() // Ruft die Spielelogik 60 mal in der Sekunde auf
     {
     	game.loadLevel();
     	long lastTime = System.nanoTime();
@@ -92,7 +93,7 @@ public class Main extends Canvas implements Runnable{
     	}
     }
     
-    public void tick() //Aktualiesert die Spiellogik
+    public void tick() //Aktualiesiert die Spiellogik
     {
     	game.doLogic();
     	tickCount++;
