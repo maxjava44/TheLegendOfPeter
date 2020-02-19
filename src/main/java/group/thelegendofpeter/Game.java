@@ -20,6 +20,8 @@ public class Game implements KeyListener {
 	public Game(SpriteSheet pSheet)
 	{
 		sheet = pSheet;
+		Sound sound = new Sound(this.getClass().getClassLoader().getResourceAsStream("sound/3386-asian-drums-by-kevin-macleod.wav"));
+		sound.start_LOOP();
 	}
 	
 	public Screen getScreen()
@@ -107,44 +109,28 @@ public class Game implements KeyListener {
 				int prevX = sprites.get(0).getX();
 				int prevY = sprites.get(0).getY();
 				switch(e.getKeyChar())
-				{
-                                    
-				case 'w':player.getSprite().setY(player.getSprite().getY()-player.getSpeed());  
-                                Sound  Sound=new Sound("nischt");//Pfad nicht relevant
-                                 Sound.Sound_Start2();
+				{               
+				case 'w':player.getSprite().setY(player.getSprite().getY()-player.getSpeed());
 				break;
 				case 's':player.getSprite().setY(player.getSprite().getY()+player.getSpeed());
-                                Sound  Sound2=new Sound("nischt");//Pfad nicht relevant
-                                 Sound2.Sound_Start2();
-                                 
 				break;
 				case 'a':player.getSprite().setX(player.getSprite().getX()-player.getSpeed());
-                                 Sound  Sound3=new Sound("nischt");//Pfad nicht relevant
-                                 Sound3.Sound_Start2();
-                                
 				break;
 				case 'd':player.getSprite().setX(player.getSprite().getX()+player.getSpeed());                     
-                                   Sound  Sound4=new Sound("nischt");//Pfad nicht relevant
-                                 Sound4.Sound_Start2();
 				break;
-                                
-                               
-                               
-                                
-				default:break;
-                                
+				default:break;         
 				}
+				if(collision())
+				{
+					player.getSprite().setX(prevX);
+					player.getSprite().setY(prevY);
+				}
+				if(!figureLevelOut() && (player.getSprite().getX() < 0 || player.getSprite().getX() > 704 || player.getSprite().getY() < 0 || player.getSprite().getY() > 704))
+		    	{
+					player.getSprite().setX(prevX);
+					player.getSprite().setY(prevY);
+		    	}
 			}
-			if(collision())
-			{
-				player.getSprite().setX(prevX);
-				player.getSprite().setY(prevY);
-			}
-			if(!figureLevelOut() && (player.getSprite().getX() < 0 || player.getSprite().getX() > 704 || player.getSprite().getY() < 0 || player.getSprite().getY() > 704))
-	    	{
-				player.getSprite().setX(prevX);
-				player.getSprite().setY(prevY);
-	    	}
 		}
 	@Override
 	public void keyReleased(KeyEvent e) {
@@ -153,4 +139,3 @@ public class Game implements KeyListener {
 	public void keyTyped(KeyEvent e) {
 	}
 }
-
