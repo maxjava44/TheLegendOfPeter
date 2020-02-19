@@ -46,8 +46,6 @@ public class Main extends Canvas implements Runnable{
     {
     	running = true;
     	new Thread(this).start();
-         Sound  Sound=new Sound("nischt wichtig"); //Gedudel starten... Pfad hier nicht relevant
-        Sound.Sound_Start();
     }
     
     public synchronized void stop() //Stoppt das Spiel
