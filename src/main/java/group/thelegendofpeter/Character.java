@@ -26,8 +26,4 @@ public class Character {
 	// damage 
 	// armor
 	
-	
-	
-	
-	
 }
