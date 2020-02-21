@@ -8,7 +8,6 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-//...
 
 import javax.swing.JFrame; 
 
@@ -22,14 +21,17 @@ public class Main extends Canvas implements Runnable{
     public static final int Scale = 1;//Der Größenskalierungsfaktor mit dem das Fenster vergrößert wird
     public static final String name = "TheLegendOfPeter";//Der Name des Fensters
     private BufferedImage image = new BufferedImage(Width,Height,BufferedImage.TYPE_INT_ARGB);
+    private BufferedImage healthimg = new BufferedImage(768,50,BufferedImage.TYPE_INT_ARGB);
     private Game game = new Game(new SpriteSheet("spritesheet.png", 5, 1, 64, 64));
     private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
+    private int[] healthpixels = ((DataBufferInt)healthimg.getRaster().getDataBuffer()).getData();
+    private Canvas healthbar = new Canvas();
     
     public Main() //Konstruktor der Klasse
     {
-    	setMinimumSize(new Dimension(Width*Scale, Height*Scale));
-    	setMaximumSize(new Dimension(Width*Scale, Height*Scale));
-    	setPreferredSize(new Dimension(Width*Scale, Height*Scale));
+    	setMinimumSize(new Dimension(Width*Scale, Height*Scale+50));
+    	setMaximumSize(new Dimension(Width*Scale, Height*Scale+50));
+    	setPreferredSize(new Dimension(Width*Scale, Height*Scale+50));
         JFrame frame = new JFrame(name); //Erstellt das Fenster und gibt dem Fenster den Namen ,,name"
         frame.addKeyListener(game);
         frame.setMinimumSize(new Dimension(Width*Scale, Height*Scale));//Setzen die Größe des Fensters
@@ -38,6 +40,8 @@ public class Main extends Canvas implements Runnable{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Wenn Fenster geschlossen wird schließst sich auch das Programm
         frame.setLayout(new BorderLayout()); //Setzt ein Borderlayout damit für die obere Fensterleiste Platz ist
         frame.add(this,BorderLayout.CENTER);//Setzt das Canvas(der Spielanzeigebereich) in die Mitte 
+        frame.add(healthbar,BorderLayout.SOUTH);
+        healthbar.setBounds(0, 768, 768, 50);
         frame.setResizable(false);//Fenster kann nicht vergrößert/verkleinert werden
         frame.setLocationRelativeTo(null);//Fenster wird mittig platziert
         frame.setVisible(true);//Fenster wird sichtbar
@@ -45,7 +49,7 @@ public class Main extends Canvas implements Runnable{
     public synchronized void start() //Startet einen Thread in dem das Spiel läuft
     {
     	running = true;
-    	new Thread(this).start();
+    	new Thread(this,"Game").start();
     }
     
     public synchronized void stop() //Stoppt das Spiel
@@ -99,7 +103,7 @@ public class Main extends Canvas implements Runnable{
     
     public void render() //Aktualiesiert den Spieleanzeigebereich
     {
-    	game.getScreen().assemble();
+        game.getScreen().assemble();
     	for(int x= 0;x<Main.Width;x++)
     	{
     		for(int y = 0;y<Main.Height;y++)
@@ -107,16 +111,37 @@ public class Main extends Canvas implements Runnable{
     			pixels[x * Main.Height + y] = game.getScreen().getPixel()[x][y];
     		}
     	}
+    	if(healthpixels.length%(100/game.getPlayer().getHealth()) == 0)
+        {
+            for(int i = healthpixels.length/(100/game.getPlayer().getHealth());i<healthpixels.length;i++)
+            {
+            	healthpixels[i] = Color.WHITE.getRGB();
+            }
+            for(int i = 0;i<healthpixels.length/(100/game.getPlayer().getHealth());i++)
+            {
+            	healthpixels[i] = Color.RED.getRGB();
+            }
+        }
     	BufferStrategy bs = getBufferStrategy();
-    	if(bs == null)
+    	BufferStrategy bshealth = healthbar.getBufferStrategy();
+    	if(bshealth == null)
     	{
-    		createBufferStrategy(2);
+    		healthbar.createBufferStrategy(3);
     		return;
     	}
+    	if(bs == null)
+    	{
+    		createBufferStrategy(3);
+    		return;
+    	}
+    	Graphics ghealth = bshealth.getDrawGraphics();
     	Graphics g = bs.getDrawGraphics();
     	while(!g.drawImage(image, 0, 0, getWidth(), getHeight(), null)) {}
+    	while(!ghealth.drawImage(healthimg, 0, 0, 768, 50, null)) {}
+    	ghealth.dispose();
     	g.dispose();
     	bs.show();
+    	bshealth.show();
     }
     
     public static void main(String args[]) //Startet das Spiel
