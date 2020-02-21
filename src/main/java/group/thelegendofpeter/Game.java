@@ -1,4 +1,3 @@
-
 package group.thelegendofpeter;
 
 import java.awt.Rectangle;
@@ -20,8 +19,9 @@ public class Game implements KeyListener {
 	public Game(SpriteSheet pSheet)
 	{
 		sheet = pSheet;
-		Sound sound = new Sound(this.getClass().getClassLoader().getResourceAsStream("sound/3386-asian-drums-by-kevin-macleod.wav"));
-		sound.start_LOOP();
+		Sound sound = new Sound("Sound",this.getClass().getClassLoader().getResourceAsStream("sound/3386-asian-drums-by-kevin-macleod.wav"));
+		sound.start();
+		sound.playing = true;
 	}
 	
 	public Screen getScreen()
@@ -116,7 +116,7 @@ public class Game implements KeyListener {
 				break;
 				case 'a':player.getSprite().setX(player.getSprite().getX()-player.getSpeed());
 				break;
-				case 'd':player.getSprite().setX(player.getSprite().getX()+player.getSpeed());                     
+				case 'd':player.getSprite().setX(player.getSprite().getX()+player.getSpeed());      
 				break;
 				default:break;         
 				}
@@ -138,4 +138,9 @@ public class Game implements KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 	}
+        
+        public Player getPlayer()
+        {
+            return player;
+        }
 }
