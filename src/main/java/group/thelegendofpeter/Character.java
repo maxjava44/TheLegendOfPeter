@@ -3,7 +3,7 @@ package group.thelegendofpeter;
 public class Character {
 	private Sprite sprite;
 	private int speed;
-	private int stats;
+	private int health = 100;
 	
 	public Character(Sprite pSprite,int pSpeed)
 	{
@@ -21,6 +21,10 @@ public class Character {
 		return sprite;
 	}
 	
+        public int getHealth()
+        {
+            return health;
+        }
 	
 	// helathpoints
 	// damage 
