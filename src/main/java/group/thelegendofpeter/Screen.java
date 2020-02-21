@@ -2,7 +2,6 @@ package group.thelegendofpeter;
 
 import java.awt.Color;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.imageio.ImageIO;
@@ -61,10 +60,10 @@ public class Screen {
     	            int a = c.getAlpha();
     	            if(r > 200 && g > 200 && b > 200)
     	            {
-    	            	pixel2d[y][x] = pixel2dbefore[y][x];
+    	            	pixel2d[y][x] = Color.RED.getRGB();
     	            }
     	            else if (a == 0) {
-    	                pixel2d[y][x] = pixel2dbefore[y][x]; 
+    	                pixel2d[y][x] = Color.RED.getRGB(); 
     	            }
                 	else
                 	{
