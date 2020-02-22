@@ -29,14 +29,14 @@ public class Main extends Canvas implements Runnable{
     
     public Main() //Konstruktor der Klasse
     {
-    	setMinimumSize(new Dimension(Width*Scale, Height*Scale+50));
-    	setMaximumSize(new Dimension(Width*Scale, Height*Scale+50));
-    	setPreferredSize(new Dimension(Width*Scale, Height*Scale+50));
+    	setMinimumSize(new Dimension(Width*Scale, Height*Scale));
+    	setMaximumSize(new Dimension(Width*Scale, Height*Scale));
+    	setPreferredSize(new Dimension(Width*Scale, Height*Scale));
         JFrame frame = new JFrame(name); //Erstellt das Fenster und gibt dem Fenster den Namen ,,name"
         frame.addKeyListener(game);
-        frame.setMinimumSize(new Dimension(Width*Scale, Height*Scale));//Setzen die Größe des Fensters
-    	frame.setMaximumSize(new Dimension(Width*Scale, Height*Scale));
-    	frame.setPreferredSize(new Dimension(Width*Scale, Height*Scale));
+        frame.setMinimumSize(new Dimension(Width*Scale, Height*Scale+50));//Setzen die Größe des Fensters
+    	frame.setMaximumSize(new Dimension(Width*Scale, Height*Scale+50));
+    	frame.setPreferredSize(new Dimension(Width*Scale, Height*Scale+50));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Wenn Fenster geschlossen wird schließst sich auch das Programm
         frame.setLayout(new BorderLayout()); //Setzt ein Borderlayout damit für die obere Fensterleiste Platz ist
         frame.add(this,BorderLayout.CENTER);//Setzt das Canvas(der Spielanzeigebereich) in die Mitte 
