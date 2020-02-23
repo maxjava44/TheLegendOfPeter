@@ -15,7 +15,7 @@ class Sound extends Thread {
         super(name);
         try
         {
-            AudioInputStream eingabe = AudioSystem.getAudioInputStream(stream);
+            AudioInputStream eingabe = AudioSystem.getAudioInputStream(new BufferedInputStream(stream));
             clip = AudioSystem.getClip();
             clip.open(eingabe);
         }
