@@ -6,6 +6,10 @@ public class Mob extends Character {
 	{
 		super(pSprite,pSpeed);
 	}
+	
+	private int health = 50;
+
+	
 }
 
 /*
