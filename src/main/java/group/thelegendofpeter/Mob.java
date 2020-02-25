@@ -24,7 +24,10 @@ public class Mob extends Character {
 	}
 	}
 
-
+	xPosition = (int)("Zahl" * Math.random());
+        yPosition = (int)("Zahl * Math.random());	
+	
+	
     private int health;
     public Mob(int health) {
         this.health = health;
@@ -37,6 +40,7 @@ public class Mob extends Character {
     public int getHealth() {
         return health;
     }
+    
     
     
     */
