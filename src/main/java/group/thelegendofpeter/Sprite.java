@@ -3,12 +3,16 @@ package group.thelegendofpeter;
 public class Sprite {
 	private int x; 
 	private int y;
+	private int width;
+	private int height;
 	private int[] pixel;
 	
-	public Sprite(int pX,int pY,int[] pPixel)
+	public Sprite(int pX,int pY,int pWidth,int pHeight,int[] pPixel)
 	{
 		x = pX;
 		y = pY;
+		width = pWidth;
+		height = pHeight;
 		pixel = pPixel;
 	}
 	
@@ -19,6 +23,15 @@ public class Sprite {
 	public void setPixel(int[] pPixel) {
 		pixel = pPixel;
 	}
+	
+	public int getHeight() {
+		return height;
+	}
+	
+	public int getWidth() {
+		return width;
+	}
+	
 	
 	public int getX() {
 		return x;
