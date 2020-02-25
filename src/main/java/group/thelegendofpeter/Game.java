@@ -74,7 +74,7 @@ public class Game implements KeyListener {
             	counter++;
             	if(counter == 3)
             	{
-            		Sprite sprite = new Sprite(infos[1],infos[2],sheet.getSpriteList().get(infos[0]).getPixel());
+            		Sprite sprite = new Sprite(infos[1],infos[2],sheet.getSpriteList().get(infos[0]).getWidth(),sheet.getSpriteList().get(infos[0]).getHeight(),sheet.getSpriteList().get(infos[0]).getPixel());
             		sprites.add(sprite);
             		counter = 0;
             	}
@@ -89,10 +89,10 @@ public class Game implements KeyListener {
 	
 	 public boolean collision()
 	    {
-	    	Rectangle playerrec = new Rectangle(sprites.get(0).getX(),sprites.get(0).getY(),64,64);
+	    	Rectangle playerrec = new Rectangle(sprites.get(0).getX(),sprites.get(0).getY(),sprites.get(0).getWidth(),sprites.get(0).getHeight());
 	    	for(int i = 1;i<sprites.size();i++)
 	    	{
-	    		Rectangle sprite = new Rectangle(sprites.get(i).getX(),sprites.get(i).getY(),64,64);
+	    		Rectangle sprite = new Rectangle(sprites.get(i).getX(),sprites.get(i).getY(),sprites.get(i).getWidth(),sprites.get(i).getHeight());
 	    		if(playerrec.intersects(sprite))
 	    		{
 	    			return true;
