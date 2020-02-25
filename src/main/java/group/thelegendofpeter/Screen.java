@@ -60,10 +60,10 @@ public class Screen {
     	            int a = c.getAlpha();
     	            if(r > 200 && g > 200 && b > 200)
     	            {
-    	            	pixel2d[y][x] = Color.RED.getRGB();
+    	            	pixel2d[y][x] = pixel2dbefore[y][x];
     	            }
     	            else if (a == 0) {
-    	                pixel2d[y][x] = Color.RED.getRGB(); 
+    	                pixel2d[y][x] = pixel2dbefore[y][x]; 
     	            }
                 	else
                 	{
