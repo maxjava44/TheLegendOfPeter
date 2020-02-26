@@ -81,6 +81,7 @@ public class Game implements KeyListener {
             }
             levelfile.close();
             player = new Player(sprites.get(0),10,100,100,10,false);
+	    player.sterben();
         }catch(Exception e)
         {
             e.printStackTrace();
@@ -111,6 +112,8 @@ public class Game implements KeyListener {
 				switch(e.getKeyChar())
 				{               
 				case 'w':player.getSprite().setY(player.getSprite().getY()-player.getSpeed());
+				player.health = player.health -10;
+                                player.sterben();
 				break;
 				case 's':player.getSprite().setY(player.getSprite().getY()+player.getSpeed());
 				break;
