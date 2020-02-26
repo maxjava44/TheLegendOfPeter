@@ -20,10 +20,12 @@ public class SpriteSheet {
 				for(int s = 0;s<rows;s++)
 				{
 					String info = sizereader.readLine();
-					int[] infos = new int[2];
+					int[] infos = new int[4];
 					infos[0] = Integer.parseInt(info.substring(0, 2));
 					infos[1] = Integer.parseInt(info.substring(2, 4));
-					sprites.add(new Sprite(0,0,infos[0],infos[1],image.getSubimage(width*s, height*i, width, height).getRGB(0,0,width,height,null,0,width)));
+					infos[2] = Integer.parseInt(info.substring(4, 6));
+					infos[3] = Integer.parseInt(info.substring(6, 8));
+					sprites.add(new Sprite(0,0,infos[0],infos[1],infos[2],infos[3],image.getSubimage(width*s, height*i, width, height).getRGB(0,0,width,height,null,0,width)));
 				}
 				sizereader.close();
 			}
