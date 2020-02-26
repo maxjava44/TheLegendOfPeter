@@ -32,6 +32,7 @@ public class Game implements KeyListener {
 	
 	public void doLogic()
 	{
+            mobs.get(0).getSprite().setX(mobs.get(0).getSprite().getX()-1);
 	}
 	
 	public boolean figureLevelOut()
@@ -62,9 +63,11 @@ public class Game implements KeyListener {
 	
 	public void loadLevel()
     {
+        mobs.clear();
     	sprites.clear();
         try{
             BufferedReader levelfile = new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("level" + levelid)));
+            BufferedReader mobfile = new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("mob" + levelid)));
             int[] infos = new int[3];
             int counter = 0;
             String content;
@@ -79,6 +82,25 @@ public class Game implements KeyListener {
             		counter = 0;
             	}
             }
+            int[] mobinfos = new int[6];
+            int mobcounter = 0;
+            String mobcontent;
+            while((mobcontent = mobfile.readLine())!= null)
+            {
+            	mobinfos[mobcounter] = Integer.parseInt(mobcontent);
+            	mobcounter++;
+            	if(mobcounter == 5)
+            	{
+            		Mob mob = new Mob(new Sprite(mobinfos[1],mobinfos[2],sheet.getSpriteList().get(mobinfos[0]).getWidth(),sheet.getSpriteList().get(mobinfos[0]).getHeight(),sheet.getSpriteList().get(mobinfos[0]).getxHitbox(),sheet.getSpriteList().get(mobinfos[0]).getyHitbox(),sheet.getSpriteList().get(mobinfos[0]).getPixel()),mobinfos[3],mobinfos[4],mobinfos[5],false);
+            		mobs.add(mob);
+            		counter = 0;
+            	}
+            }
+            for(Mob mob : mobs)
+            {
+                sprites.add(mob.getSprite());
+            }
+            mobfile.close();
             levelfile.close();
             player = new Player(sprites.get(0),10,100,100,10,false);
 	    player.sterben();
@@ -112,8 +134,8 @@ public class Game implements KeyListener {
 				switch(e.getKeyChar())
 				{               
 				case 'w':player.getSprite().setY(player.getSprite().getY()-player.getSpeed());
-				player.health = player.health -10;
-                                player.sterben();
+				player.setHealth(player.getHealth() -10);
+                player.sterben();
 				break;
 				case 's':player.getSprite().setY(player.getSprite().getY()+player.getSpeed());
 				break;
