@@ -80,7 +80,7 @@ public class Game implements KeyListener {
             	}
             }
             levelfile.close();
-            player = new Player(sprites.get(0),10);
+            player = new Player(sprites.get(0),10,100,100,10,false);
         }catch(Exception e)
         {
             e.printStackTrace();
