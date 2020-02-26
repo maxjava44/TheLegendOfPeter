@@ -13,15 +13,20 @@ public class Screen {
     Sprite background;
     public Screen(){
     	try {
-			background = new Sprite(0,0,0,0,ImageIO.read(this.getClass().getClassLoader().getResource("background.png")).getRGB(0,0,64,64,null,0,64));
+			background = new Sprite(0,0,0,0,0,0,ImageIO.read(this.getClass().getClassLoader().getResource("background.png")).getRGB(0,0,64,64,null,0,64));
 		} catch (IOException e) {
 			int[] backgroundalt = new int[64*64];
 			for(int i = 0;i<backgroundalt.length;i++)
 			{
 				backgroundalt[i] = java.awt.Color.RED.getRGB();
 			}
-			background = new Sprite(0,0,0,0,backgroundalt);
+			background = new Sprite(0,0,0,0,0,0,backgroundalt);
 		}
+    }
+    
+    public void setBackground(Sprite pBackground)
+    {
+    	background = pBackground;
     }
     
     public void assemble()
