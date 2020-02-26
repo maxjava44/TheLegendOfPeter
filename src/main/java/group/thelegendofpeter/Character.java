@@ -3,12 +3,19 @@ package group.thelegendofpeter;
 public class Character {
 	private Sprite sprite;
 	private int speed;
-	private int health = 100;
+	private int health;
+        private int maxHealth = 100;
+        private int attackDamage;
+        private boolean dead;
 	
-	public Character(Sprite pSprite,int pSpeed)
+	public Character(Sprite pSprite,int pSpeed,int pHealth,int pMaxHealth,int pAttackDamage,boolean pDead)
 	{
 		sprite = pSprite;
 		speed = pSpeed;
+		health = pHealth;
+                maxHealth = pMaxHealth;
+                attackDamage = pAttackDamage;
+                dead = pDead;
 	}
 	
 	public int getSpeed()
@@ -26,8 +33,19 @@ public class Character {
             return health;
         }
 	
-	// helathpoints
-	// damage 
-	// armor
-	
+	public int getMaxHealth()
+        {
+            return maxHealth;
+        }	
+        
+        public int getAttackDamage()
+        {
+            return attackDamage;
+        }
+        
+        public boolean getDead()
+        {
+            return dead;
+        }
+		
 }
