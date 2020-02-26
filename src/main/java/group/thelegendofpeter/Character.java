@@ -28,6 +28,11 @@ public class Character {
 		return sprite;
 	}
 	
+	public void setHealth(int pHealth)
+    {
+        health = pHealth;
+    }
+	
         public int getHealth()
         {
             return health;
