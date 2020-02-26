@@ -1,4 +1,4 @@
-ackage group.thelegendofpeter;
+package group.thelegendofpeter;
 
 public class Sprite {
 	private int x; 
