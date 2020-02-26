@@ -10,6 +10,7 @@ public class Screen {
 
     private int[][] pixel2d = new int[Main.Width][Main.Height];
     CopyOnWriteArrayList<Sprite> sprites = new CopyOnWriteArrayList<Sprite>();
+    CopyOnWriteArrayList<Sprite> mobsprites = new CopyOnWriteArrayList<Sprite>();
     Sprite background;
     public Screen(){
     	try {
