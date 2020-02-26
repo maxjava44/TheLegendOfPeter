@@ -47,5 +47,15 @@ public class Character {
         {
             return dead;
         }
+	
+	public void sterben()
+        {
+            if (health == 0){
+                dead = true;
+            }
+            if (dead == true){
+                System.out.println("tot");
+            }
+        }
 		
 }
