@@ -111,27 +111,24 @@ public class Main extends Canvas implements Runnable{
     			pixels[x * Main.Height + y] = game.getScreen().getPixel()[x][y];
     		}
     	}
-    	if(healthpixels.length%(100/game.getPlayer().getHealth()) == 0)
+        for(int i = healthpixels.length/(100/game.getPlayer().getHealth());i<healthpixels.length;i++)
         {
-            for(int i = healthpixels.length/(100/game.getPlayer().getHealth());i<healthpixels.length;i++)
-            {
-            	healthpixels[i] = Color.WHITE.getRGB();
-            }
-            for(int i = 0;i<healthpixels.length/(100/game.getPlayer().getHealth());i++)
-            {
-            	healthpixels[i] = Color.RED.getRGB();
-            }
+           	healthpixels[i] = Color.WHITE.getRGB();
+        }
+        for(int i = 0;i<healthpixels.length/(100/game.getPlayer().getHealth());i++)
+        {
+            healthpixels[i] = Color.RED.getRGB();
         }
     	BufferStrategy bs = getBufferStrategy();
     	BufferStrategy bshealth = healthbar.getBufferStrategy();
     	if(bshealth == null)
     	{
-    		healthbar.createBufferStrategy(3);
+    		healthbar.createBufferStrategy(2);
     		return;
     	}
     	if(bs == null)
     	{
-    		createBufferStrategy(3);
+    		createBufferStrategy(2);
     		return;
     	}
     	Graphics ghealth = bshealth.getDrawGraphics();
