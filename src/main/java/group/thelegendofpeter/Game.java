@@ -32,7 +32,30 @@ public class Game implements KeyListener {
 	
 	public void doLogic()
 	{
-            mobs.get(0).getSprite().setX(mobs.get(0).getSprite().getX()-1);
+            for(Mob mob : mobs)
+            {
+            	int dx = player.getSprite().getX() - mob.getSprite().getX();
+            	int dy = player.getSprite().getY() - mob.getSprite().getY();
+            	double distance = Math.sqrt((dx*dx)+(dy*dy));
+            	if(dy < 0) {
+            		mob.getSprite().setY(mob.getSprite().getY()-mob.getSpeed());
+            	}
+            	if(dy > 0) {
+            		mob.getSprite().setY(mob.getSprite().getY()+mob.getSpeed());
+            	}
+                if(dx < 0) {
+            		mob.getSprite().setX(mob.getSprite().getX()-mob.getSpeed());
+            	}
+            	if(dx > 0) {
+            		mob.getSprite().setX(mob.getSprite().getX()+mob.getSpeed());
+            	}
+            	if(distance < 60)
+            	{
+            		player.setHealth(player.getHealth() -mob.getAttackDamage());
+            	}
+            	System.out.println(distance);
+            }
+            player.isDead();
 	}
 	
 	public boolean figureLevelOut()
@@ -82,16 +105,16 @@ public class Game implements KeyListener {
             		counter = 0;
             	}
             }
-            int[] mobinfos = new int[6];
+            int[] mobinfos = new int[7];
             int mobcounter = 0;
             String mobcontent;
             while((mobcontent = mobfile.readLine())!= null)
             {
             	mobinfos[mobcounter] = Integer.parseInt(mobcontent);
             	mobcounter++;
-            	if(mobcounter == 5)
+            	if(mobcounter == 6)
             	{
-            		Mob mob = new Mob(new Sprite(mobinfos[1],mobinfos[2],sheet.getSpriteList().get(mobinfos[0]).getWidth(),sheet.getSpriteList().get(mobinfos[0]).getHeight(),sheet.getSpriteList().get(mobinfos[0]).getxHitbox(),sheet.getSpriteList().get(mobinfos[0]).getyHitbox(),sheet.getSpriteList().get(mobinfos[0]).getPixel()),mobinfos[3],mobinfos[4],mobinfos[5],false);
+            		Mob mob = new Mob(new Sprite(mobinfos[1],mobinfos[2],sheet.getSpriteList().get(mobinfos[0]).getWidth(),sheet.getSpriteList().get(mobinfos[0]).getHeight(),sheet.getSpriteList().get(mobinfos[0]).getxHitbox(),sheet.getSpriteList().get(mobinfos[0]).getyHitbox(),sheet.getSpriteList().get(mobinfos[0]).getPixel()),mobinfos[3],mobinfos[4],mobinfos[5],1,false);
             		mobs.add(mob);
             		counter = 0;
             	}
@@ -103,7 +126,6 @@ public class Game implements KeyListener {
             mobfile.close();
             levelfile.close();
             player = new Player(sprites.get(0),10,100,100,10,false);
-	    player.sterben();
         }catch(Exception e)
         {
             e.printStackTrace();
@@ -134,8 +156,7 @@ public class Game implements KeyListener {
 				switch(e.getKeyChar())
 				{               
 				case 'w':player.getSprite().setY(player.getSprite().getY()-player.getSpeed());
-				player.setHealth(player.getHealth() -10);
-                player.sterben();
+				//player.setHealth(player.getHealth() -10);
 				break;
 				case 's':player.getSprite().setY(player.getSprite().getY()+player.getSpeed());
 				break;
