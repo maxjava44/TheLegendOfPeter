@@ -53,7 +53,7 @@ public class Character {
             return dead;
         }
 	
-	public void sterben()
+	public boolean isDead()
         {
             if (health == 0){
                 dead = true;
@@ -61,6 +61,7 @@ public class Character {
             if (dead == true){
                 System.out.println("tot");
             }
+            return dead;
         }
 		
 }
