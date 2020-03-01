@@ -36,22 +36,24 @@ public class Game implements KeyListener {
             {
             	int dx = player.getSprite().getX() - mob.getSprite().getX();
             	int dy = player.getSprite().getY() - mob.getSprite().getY();
+            	int prevX = mob.getSprite().getX();
+            	int prevY = mob.getSprite().getY();
             	double distance = Math.sqrt((dx*dx)+(dy*dy));
             	if(dy < 0) {
             		mob.getSprite().setY(mob.getSprite().getY()-mob.getSpeed());
             	}
-            	if(dy > 0) {
+            	else if(dy > 0) {
             		mob.getSprite().setY(mob.getSprite().getY()+mob.getSpeed());
             	}
-                if(dx < 0) {
+            	if(dx < 0) {
             		mob.getSprite().setX(mob.getSprite().getX()-mob.getSpeed());
             	}
-            	if(dx > 0) {
+                else if(dx > 0) {
             		mob.getSprite().setX(mob.getSprite().getX()+mob.getSpeed());
             	}
             	if(distance < 60)
             	{
-            		player.setHealth(player.getHealth() -mob.getAttackDamage());
+            		//player.setHealth(player.getHealth() -mob.getAttackDamage());
             	}
             	System.out.println(distance);
             }
@@ -60,6 +62,10 @@ public class Game implements KeyListener {
 	
 	public boolean figureLevelOut()
 	{
+		if(levelid == 22)
+		{
+			return false;
+		}
 		if(player.getSprite().getX()>=704 && levelid != 13 && levelid != 23 && levelid != 33)
 		{
 			levelid++;
@@ -112,11 +118,11 @@ public class Game implements KeyListener {
             {
             	mobinfos[mobcounter] = Integer.parseInt(mobcontent);
             	mobcounter++;
-            	if(mobcounter == 6)
+            	if(mobcounter == mobinfos.length-1)
             	{
             		Mob mob = new Mob(new Sprite(mobinfos[1],mobinfos[2],sheet.getSpriteList().get(mobinfos[0]).getWidth(),sheet.getSpriteList().get(mobinfos[0]).getHeight(),sheet.getSpriteList().get(mobinfos[0]).getxHitbox(),sheet.getSpriteList().get(mobinfos[0]).getyHitbox(),sheet.getSpriteList().get(mobinfos[0]).getPixel()),mobinfos[3],mobinfos[4],mobinfos[5],1,false);
             		mobs.add(mob);
-            		counter = 0;
+            		mobcounter = 0;
             	}
             }
             for(Mob mob : mobs)
@@ -132,13 +138,13 @@ public class Game implements KeyListener {
         }
     }
 	
-	 public boolean collision()
+	 public boolean collision(Sprite sprite)
 	    {
-	    	Rectangle playerrec = new Rectangle(sprites.get(0).getX()+sprites.get(0).getxHitbox(),sprites.get(0).getY()+sprites.get(0).getyHitbox(),sprites.get(0).getWidth(),sprites.get(0).getHeight());
-	    	for(int i = 1;i<sprites.size();i++)
+	    	Rectangle playerrec = new Rectangle(sprite.getX()+sprite.getxHitbox(),sprite.getY()+sprite.getyHitbox(),sprite.getWidth(),sprite.getHeight());
+	    	for(int i = 0;i<sprites.size();i++)
 	    	{
-	    		Rectangle sprite = new Rectangle(sprites.get(i).getX()+sprites.get(0).getxHitbox(),sprites.get(i).getY()+sprites.get(0).getyHitbox(),sprites.get(i).getWidth(),sprites.get(i).getHeight());
-	    		if(playerrec.intersects(sprite))
+	    		Rectangle spriterec = new Rectangle(sprites.get(i).getX()+sprites.get(i).getxHitbox(),sprites.get(i).getY()+sprites.get(i).getyHitbox(),sprites.get(i).getWidth(),sprites.get(i).getHeight());
+	    		if(playerrec.intersects(spriterec) && !playerrec.equals(spriterec))
 	    		{
 	    			return true;
 	    		}
@@ -148,7 +154,6 @@ public class Game implements KeyListener {
 
 		@Override
 		public void keyPressed(KeyEvent e) {
-			// TODO Auto-generated method stub
 			if(!(sprites.isEmpty()))
 			{
 				int prevX = sprites.get(0).getX();
@@ -166,7 +171,7 @@ public class Game implements KeyListener {
 				break;
 				default:break;         
 				}
-				if(collision())
+				if(collision(player.getSprite()))
 				{
 					player.getSprite().setX(prevX);
 					player.getSprite().setY(prevY);
