@@ -22,7 +22,7 @@ public class Main extends Canvas implements Runnable{
     public static final String name = "TheLegendOfPeter";//Der Name des Fensters
     private BufferedImage image = new BufferedImage(Width,Height,BufferedImage.TYPE_INT_ARGB);
     private BufferedImage healthimg = new BufferedImage(768,50,BufferedImage.TYPE_INT_ARGB);
-    private Game game = new Game(new SpriteSheet("spritesheet.png", 5, 1, 64, 64));
+    private Game game = new Game(new SpriteSheet("spritesheet.png", 10, 1, 64, 64));
     private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
     private int[] healthpixels = ((DataBufferInt)healthimg.getRaster().getDataBuffer()).getData();
     private Canvas healthbar = new Canvas();
