@@ -41,15 +41,31 @@ public class Game implements KeyListener {
             	double distance = Math.sqrt((dx*dx)+(dy*dy));
             	if(dy < 0) {
             		mob.getSprite().setY(mob.getSprite().getY()-mob.getSpeed());
+            		if(collision(mob.getSprite()))
+                	{
+                		mob.getSprite().setY(prevY);
+                	}
             	}
             	else if(dy > 0) {
             		mob.getSprite().setY(mob.getSprite().getY()+mob.getSpeed());
+            		if(collision(mob.getSprite()))
+                	{
+                		mob.getSprite().setY(prevY);
+                	}
             	}
             	if(dx < 0) {
             		mob.getSprite().setX(mob.getSprite().getX()-mob.getSpeed());
+            		if(collision(mob.getSprite()))
+                	{
+                		mob.getSprite().setX(prevX);
+                	}
             	}
                 else if(dx > 0) {
             		mob.getSprite().setX(mob.getSprite().getX()+mob.getSpeed());
+            		if(collision(mob.getSprite()))
+                	{
+                		mob.getSprite().setX(prevX);
+                	}
             	}
             	if(distance < 60)
             	{
