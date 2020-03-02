@@ -147,10 +147,3 @@ public class Main extends Canvas implements Runnable{
     }
 }
 
-
-----/** **
- **  The public name of a hero that is common knowledge
- ** /private String heroName;
-----
-
-// Ja der Text dazu passt natürlch nicht, aber ich will nur wissen ob das überhaupt so angezeigt werden kann.
