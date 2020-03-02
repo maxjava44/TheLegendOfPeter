@@ -10,11 +10,12 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game implements KeyListener {
 	private Player player;
-	private ArrayList<Mob> mobs = new ArrayList<Mob>();
+	private CopyOnWriteArrayList<Mob> mobs = new CopyOnWriteArrayList<Mob>();
 	private CopyOnWriteArrayList<Sprite> sprites = new CopyOnWriteArrayList<Sprite>();
 	SpriteSheet sheet;
 	Screen screen = new Screen();
 	int levelid = 11;
+	private Arraylist<Double> mobdistances = new ArrayList<Double>(10);
 	
 	public Game(SpriteSheet pSheet)
 	{
@@ -72,6 +73,11 @@ public class Game implements KeyListener {
             		//player.setHealth(player.getHealth() -mob.getAttackDamage());
             	}
             	System.out.println(distance);
+		mob.isDead();
+		if (mob.isDead())
+		{
+			mobs.remove(mob);
+		}
             }
             player.isDead();
 	}
@@ -136,7 +142,7 @@ public class Game implements KeyListener {
             	mobcounter++;
             	if(mobcounter == mobinfos.length-1)
             	{
-            		Mob mob = new Mob(new Sprite(mobinfos[1],mobinfos[2],sheet.getSpriteList().get(mobinfos[0]).getWidth(),sheet.getSpriteList().get(mobinfos[0]).getHeight(),sheet.getSpriteList().get(mobinfos[0]).getxHitbox(),sheet.getSpriteList().get(mobinfos[0]).getyHitbox(),sheet.getSpriteList().get(mobinfos[0]).getPixel()),mobinfos[3],mobinfos[4],mobinfos[5],1,false);
+            		Mob mob = new Mob(new Sprite(mobinfos[1],mobinfos[2],sheet.getSpriteList().get(mobinfos[0]).getWidth(),sheet.getSpriteList().get(mobinfos[0]).getHeight(),sheet.getSpriteList().get(mobinfos[0]).getxHitbox(),sheet.getSpriteList().get(mobinfos[0]).getyHitbox(),sheet.getSpriteList().get(mobinfos[0]).getPixel()),mobinfos[3],mobinfos[4],mobinfos[5],false);
             		mobs.add(mob);
             		mobcounter = 0;
             	}
@@ -147,7 +153,7 @@ public class Game implements KeyListener {
             }
             mobfile.close();
             levelfile.close();
-            player = new Player(sprites.get(0),10,100,100,10,false);
+            player = new Player(sprites.get(0),10,100,10,false);
         }catch(Exception e)
         {
             e.printStackTrace();
@@ -186,6 +192,16 @@ public class Game implements KeyListener {
 				case 'd':player.getSprite().setX(player.getSprite().getX()+player.getSpeed());      
 				break;
 				default:break;         
+				}
+				if(e.getKeyChar() == 'l')
+				{
+					for(Mob mob : mobs)
+					{
+						if(mob.getDistance() < 80.0)
+						{
+							mob.setHealth(mob.getHealth() -player.getAttackDamage());
+						}
+					}
 				}
 				if(collision(player.getSprite()))
 				{
