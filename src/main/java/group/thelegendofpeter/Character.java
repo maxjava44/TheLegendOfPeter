@@ -4,16 +4,14 @@ public class Character {
 	private Sprite sprite;
 	private int speed;
 	private int health;
-        private int maxHealth = 100;
         private int attackDamage;
         private boolean dead;
 	
-	public Character(Sprite pSprite,int pSpeed,int pHealth,int pMaxHealth,int pAttackDamage,boolean pDead)
+	public Character(Sprite pSprite,int pSpeed,int pHealth,int pAttackDamage,boolean pDead)
 	{
 		sprite = pSprite;
 		speed = pSpeed;
 		health = pHealth;
-                maxHealth = pMaxHealth;
                 attackDamage = pAttackDamage;
                 dead = pDead;
 	}
@@ -37,11 +35,6 @@ public class Character {
         {
             return health;
         }
-	
-	public int getMaxHealth()
-        {
-            return maxHealth;
-        }	
         
         public int getAttackDamage()
         {
