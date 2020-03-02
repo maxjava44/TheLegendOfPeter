@@ -15,7 +15,7 @@ public class Game implements KeyListener {
 	SpriteSheet sheet;
 	Screen screen = new Screen();
 	int levelid = 11;
-	private Arraylist<Double> mobdistances = new ArrayList<Double>(10);
+	private ArrayList<Double> mobdistances = new ArrayList<Double>(10);
 	
 	public Game(SpriteSheet pSheet)
 	{
