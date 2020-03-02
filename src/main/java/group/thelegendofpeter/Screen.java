@@ -59,22 +59,15 @@ public class Screen {
     		{
                 for(int y = yOff;y<64+yOff;y++)
                 {
-                	Color c = new Color(sprite.getPixel()[(y-yOff) * 64 + (x-xOff)],true);
-    	            int r = c.getRed();
-    	            int g = c.getGreen();
-    	            int b = c.getBlue();
+                    Color c = new Color(sprite.getPixel()[(y-yOff) * 64 + (x-xOff)],true);
     	            int a = c.getAlpha();
-    	            if(r > 200 && g > 200 && b > 200)
-    	            {
-    	            	pixel2d[y][x] = pixel2dbefore[y][x];
-    	            }
-    	            else if (a == 0) {
+    	            if (a == 0) {
     	                pixel2d[y][x] = pixel2dbefore[y][x]; 
     	            }
-                	else
-                	{
-                		pixel2d[y][x] = sprite.getPixel()[(y-yOff) * 64 + (x-xOff)];
-                	}
+                    else
+                    {
+                	pixel2d[y][x] = sprite.getPixel()[(y-yOff) * 64 + (x-xOff)];
+                    }
                 }
             }
     	}
