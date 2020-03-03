@@ -117,6 +117,7 @@ public class Game implements KeyListener {
         mobs.clear();
     	sprites.clear();
         try{
+        	screen.setBackground(new Sprite(0,0,0,0,0,0,ImageIO.read(this.getClass().getClassLoader().getResource(levelid+".png")).getRGB(0,0,768,768,null,0,768)));
             BufferedReader levelfile = new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("level" + levelid)));
             BufferedReader mobfile = new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("mob" + levelid)));
             int[] infos = new int[3];
@@ -227,3 +228,4 @@ public class Game implements KeyListener {
             return player;
         }
 }
+
