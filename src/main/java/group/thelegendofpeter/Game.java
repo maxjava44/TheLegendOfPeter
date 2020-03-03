@@ -76,6 +76,7 @@ public class Game implements KeyListener {
             	if (mob.isDead())
             	{
             		mobs.remove(mob);
+            		sprites.remove(mob.getSprite());
             	}
             }
             player.isDead();
