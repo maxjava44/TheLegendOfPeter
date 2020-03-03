@@ -12,19 +12,7 @@ public class Screen {
     CopyOnWriteArrayList<Sprite> sprites = new CopyOnWriteArrayList<Sprite>();
     CopyOnWriteArrayList<Sprite> mobsprites = new CopyOnWriteArrayList<Sprite>();
     Sprite background;
-    public Screen(){
-    	try {
-			background = new Sprite(0,0,0,0,0,0,ImageIO.read(this.getClass().getClassLoader().getResource("background.png")).getRGB(0,0,64,64,null,0,64));
-		} catch (IOException e) {
-			int[] backgroundalt = new int[64*64];
-			for(int i = 0;i<backgroundalt.length;i++)
-			{
-				backgroundalt[i] = java.awt.Color.RED.getRGB();
-			}
-			background = new Sprite(0,0,0,0,0,0,backgroundalt);
-		}
-    }
-    
+
     public void setBackground(Sprite pBackground)
     {
     	background = pBackground;
@@ -32,24 +20,14 @@ public class Screen {
     
     public void assemble()
     {
-    	int xHelp = 0;
-    	int yHelp = 0;
-    	for(int i = 0;i<12*12;i++)
-    	{
-    		for(int x = xHelp;x<64+xHelp;x++)
-    		{
-                for(int y = yHelp;y<64+yHelp;y++)
-                {
-                	pixel2d[y][x] = background.getPixel()[(y-yHelp) * 64 + (x-xHelp)];
-                }
+		for(int x = 0;x<768;x++)
+		{
+            for(int y = 0;y<768;y++)
+            {
+            	pixel2d[y][x] = background.getPixel()[y * 768 + x];
             }
-    		xHelp = xHelp + 64;
-    		if(xHelp > 704)
-    		{
-    			xHelp = 0;
-    			yHelp = yHelp + 64;
-    		}
-    	}
+        }
+
     	int[][] pixel2dbefore = pixel2d;
     	for(Sprite sprite : sprites)
     	{
