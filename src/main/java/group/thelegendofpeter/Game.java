@@ -15,7 +15,6 @@ public class Game implements KeyListener {
 	SpriteSheet sheet;
 	Screen screen = new Screen();
 	int levelid = 11;
-	private ArrayList<Double> mobdistances = new ArrayList<Double>(10);
 	
 	public Game(SpriteSheet pSheet)
 	{
@@ -40,6 +39,7 @@ public class Game implements KeyListener {
             	int prevX = mob.getSprite().getX();
             	int prevY = mob.getSprite().getY();
             	double distance = Math.sqrt((dx*dx)+(dy*dy));
+            	mob.setDistance(distance);
             	if(dy < 0) {
             		mob.getSprite().setY(mob.getSprite().getY()-mob.getSpeed());
             		if(collision(mob.getSprite()))
@@ -73,11 +73,10 @@ public class Game implements KeyListener {
             		//player.setHealth(player.getHealth() -mob.getAttackDamage());
             	}
             	System.out.println(distance);
-		mob.isDead();
-		if (mob.isDead())
-		{
-			mobs.remove(mob);
-		}
+            	if (mob.isDead())
+            	{
+            		mobs.remove(mob);
+            	}
             }
             player.isDead();
 	}
