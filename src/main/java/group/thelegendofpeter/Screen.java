@@ -60,4 +60,3 @@ public class Screen {
     {
     	return pixel2d;
     }
-}
