@@ -197,6 +197,7 @@ public class Game implements KeyListener {
 
 		@Override
 		public void keyPressed(KeyEvent e) {
+			long milliseconds = System.currentTimeMillis();
 			if(!(sprites.isEmpty()))
 			{
 				int prevX = sprites.get(0).getX();
@@ -218,9 +219,11 @@ public class Game implements KeyListener {
 				{
 					for(Mob mob : mobs)
 					{
-						if(mob.getDistance() < 80.0)
+						if(mob.getDistance() < 80.0 && playertimediff >= 1500)
 						{
 							mob.setHealth(mob.getHealth() -player.getAttackDamage());
+							playerattackedtime = System.currentTimeMillis();
+		            		playertimediff = 0;
 						}
 					}
 				}
@@ -235,6 +238,7 @@ public class Game implements KeyListener {
 					player.getSprite().setY(prevY);
 		    	}
 			}
+			playertimediff = milliseconds - playerattackedtime;
 		}
 	@Override
 	public void keyReleased(KeyEvent e) {
