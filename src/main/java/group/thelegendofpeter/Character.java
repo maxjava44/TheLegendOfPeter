@@ -21,6 +21,11 @@ public class Character {
 		return speed;
 	}
 	
+	public void setSprite(Sprite pSprite)
+	{
+		sprite = pSprite;
+	}
+	
 	public Sprite getSprite()
 	{
 		return sprite;
