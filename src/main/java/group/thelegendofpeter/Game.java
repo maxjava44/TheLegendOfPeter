@@ -224,7 +224,7 @@ public class Game implements KeyListener {
                                      attacksound.playing = false;
                                 }        
 				
-				if(e.getKeyChar() == 'l')
+				if(e.getKeyChar() == 'l') //startet den attacksound wenn der spieler "l" drückt
 				{
 					 attacksound.playing = true;
 					for(Mob mob : mobs)
