@@ -203,7 +203,7 @@ public class Game implements KeyListener {
             	return;
             }
             }
-            notfirst = true;
+            notfirstrun = true;
         }catch(Exception e)
         {
             e.printStackTrace();
