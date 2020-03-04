@@ -27,6 +27,7 @@ public class Game implements KeyListener {
          */
 	public Game(SpriteSheet pSheet)
 	{
+		attacksound.start();
 		sheet = pSheet;
 		Sound sound = new Sound("Sound",this.getClass().getClassLoader().getResourceAsStream("sound/3386-asian-drums-by-kevin-macleod.wav"));
 		sound.start();
@@ -218,8 +219,14 @@ public class Game implements KeyListener {
 				break;
 				default:break;         
 				}
+				if(e.getKeyChar() != 'l') //stoppt den attacksound wenn der spieler weiter läuft
+				{
+                                     attacksound.playing = false;
+                                }        
+				
 				if(e.getKeyChar() == 'l')
 				{
+					 attacksound.playing = true;
 					for(Mob mob : mobs)
 					{
 						if(mob.getDistance() < 80.0 && playertimediff >= 1500)
