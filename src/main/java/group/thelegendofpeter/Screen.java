@@ -1,17 +1,14 @@
 package group.thelegendofpeter;
 
 import java.awt.Color;
-import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import javax.imageio.ImageIO;
 
 public class Screen {
 
     private int[][] pixel2d = new int[Main.Width][Main.Height];
-    CopyOnWriteArrayList<Sprite> sprites = new CopyOnWriteArrayList<Sprite>();
-    CopyOnWriteArrayList<Sprite> mobsprites = new CopyOnWriteArrayList<Sprite>();
-    Sprite background;
+    private CopyOnWriteArrayList<Sprite> sprites = new CopyOnWriteArrayList<Sprite>();
+    private CopyOnWriteArrayList<Sprite> mobsprites = new CopyOnWriteArrayList<Sprite>();
+    private Sprite background;
 
     public void setBackground(Sprite pBackground)
     {
