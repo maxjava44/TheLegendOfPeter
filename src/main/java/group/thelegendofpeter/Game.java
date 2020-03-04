@@ -107,6 +107,10 @@ public class Game implements KeyListener {
             timediff = milliseconds - attackedtime;
 	}
 	
+	/**
+         * Die Methode begrenzt die Level damit der Player nicht ins Nichts laufen kann und ruft die Methode loadlevel() auf
+         * @return Ist ein Level geladen worden? (boolean)
+         */        
 	public boolean figureLevelOut()
 	{
 		if(levelid == 22)
@@ -138,7 +142,7 @@ public class Game implements KeyListener {
 	}
 	
 	public void loadLevel()
-    {
+    	{
         mobs.clear();
     	sprites.clear();
 	sprites.add(player.getSprite());
@@ -210,6 +214,12 @@ public class Game implements KeyListener {
         }
     }
 	
+	/**
+         * Die Methode passt für jedes einzelne Sprite die Koordinaten der Hitbox den Koordianten des Sprites an. Die Hitbox entspricht einem virtuellen Viereck.
+         * @param sprite die Methode nimmt den Sprite, welcher getestet wird
+         * Wenn die Hitbox eines Sprites eine Hitbox berührt, die nicht die eigene Hitbox ist, return true
+         * @return Hat die Hitbox eines Sprites die Hitbox eines anderen Sprites berührt? (boolean)
+         */
 	 public boolean collision(Sprite sprite)
 	    {
 	    	Rectangle playerrec = new Rectangle(sprite.getX()+sprite.getxHitbox(),sprite.getY()+sprite.getyHitbox(),sprite.getWidth(),sprite.getHeight());
@@ -224,8 +234,19 @@ public class Game implements KeyListener {
 	    	return false;
 	    }
 
-		@Override
-		public void keyPressed(KeyEvent e) {
+		 /**
+        	 * Die Methode kontrolliert die Eingaben.
+                 * Wenn die w-Taste gedrückt wird läuft der Player nach oben (Seine Position wird aktualisiert)
+                 * Wenn die s-Taste gedrückt wird läuft der Player nach unten (Seine Position wird aktualisiert)
+                 * Wenn die a-Taste gedrückt wird läuft der Player nach links (Seine Position wird aktualisiert)
+                 * Wenn die d-Taste gedrückt wird läuft der Player nach rechts (Seine Position wird aktualisiert)
+                 * Wenn die Eingabe die l-Taste ist, wird für jeden Mob überprüft, ob der Abstand zum Player einen bestimmten Wert unterschreitet Wenn dem so ist, verliert der Mob Leben gleich dem Angriffsschaden des Players
+                 * Wenn der die Hitbox des Player eine Hitbox eines anderen Objektes berührt, wird der Player auf seine vorherige Position zurückgesetzt
+                 * Wenn der Player an die Grenze eines Levels läuft, durch die er nicht durchlaufen kann, wird der Player auf seine vorherige Position zurückgesetzt 
+                 * @param e 
+                 */
+			@Override
+			public void keyPressed(KeyEvent e) {
 			long milliseconds = System.currentTimeMillis();
 			if(!(sprites.isEmpty()))
 			{
