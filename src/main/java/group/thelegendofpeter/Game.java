@@ -174,7 +174,7 @@ public class Game implements KeyListener {
             }
             mobfile.close();
             levelfile.close();
-            player = new Player(sprites.get(0),10,100,10,false);
+            player.setSprite(sprites.get(0));
         }catch(Exception e)
         {
             e.printStackTrace();
