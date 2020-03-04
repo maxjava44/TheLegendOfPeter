@@ -204,8 +204,8 @@ public class Game implements KeyListener {
 			long milliseconds = System.currentTimeMillis();
 			if(!(sprites.isEmpty()))
 			{
-				int prevX = sprites.get(0).getX();
-				int prevY = sprites.get(0).getY();
+				int prevX = player.getSprite().getX();
+				int prevY = player.getSprite().getY();
 				switch(e.getKeyChar())
 				{               
 				case 'w':player.getSprite().setY(player.getSprite().getY()-player.getSpeed());
