@@ -17,6 +17,8 @@ public class Game implements KeyListener {
 	int levelid = 11;
 	long timediff = 1500;
 	long attackedtime;
+	long playertimediff = 1500;
+	long playerattackedtime;
 	
 	 /**
          * Initialisiert ein Onjekt der klasse game und startet den Sound 
