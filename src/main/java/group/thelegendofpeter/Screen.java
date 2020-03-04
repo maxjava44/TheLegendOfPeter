@@ -29,6 +29,7 @@ public class Screen {
         }
 
     	int[][] pixel2dbefore = pixel2d;
+    	try {
     	for(Sprite sprite : sprites)
     	{
     		int yOff = sprite.getY();
@@ -48,6 +49,10 @@ public class Screen {
                     }
                 }
             }
+    	}
+    	}catch (Exception e)
+    	{
+    		return;
     	}
     }
     
