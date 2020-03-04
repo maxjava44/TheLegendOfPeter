@@ -9,12 +9,14 @@ import javax.imageio.ImageIO;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game implements KeyListener {
-	private Player player;
+	private Player player = new Player(null,10,100,10,false);
 	private CopyOnWriteArrayList<Mob> mobs = new CopyOnWriteArrayList<Mob>();
 	private CopyOnWriteArrayList<Sprite> sprites = new CopyOnWriteArrayList<Sprite>();
 	SpriteSheet sheet;
 	Screen screen = new Screen();
 	int levelid = 11;
+	long timediff = 1500;
+	long attackedtime;
 	
 	 /**
          * Initialisiert ein Onjekt der klasse game und startet den Sound 
@@ -46,6 +48,7 @@ public class Game implements KeyListener {
          */
 	public void doLogic()
 	{
+		    long milliseconds = System.currentTimeMillis(); 
             for(Mob mob : mobs)
             {
             	int dx = player.getSprite().getX() - mob.getSprite().getX();
@@ -82,9 +85,11 @@ public class Game implements KeyListener {
                 		mob.getSprite().setX(prevX);
                 	}
             	}
-            	if(distance < 60)
+            	if(distance < 60 && timediff >= 1500)
             	{
-            		//player.setHealth(player.getHealth() -mob.getAttackDamage());
+            		player.setHealth(player.getHealth() -mob.getAttackDamage());
+            		attackedtime = System.currentTimeMillis();
+            		timediff = 0;
             	}
             	System.out.println(distance);
             	if (mob.isDead())
@@ -94,6 +99,7 @@ public class Game implements KeyListener {
             	}
             }
             player.isDead();
+            timediff = milliseconds - attackedtime;
 	}
 	
 	public boolean figureLevelOut()
