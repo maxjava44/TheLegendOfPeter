@@ -20,7 +20,6 @@ public class Game implements KeyListener {
 	long playertimediff = 1500;
 	long playerattackedtime;
 	Sound attacksound = new Sound("AttackSound",this.getClass().getClassLoader().getResourceAsStream("sound/Windows Ding.wav"));
-	
 	 /**
          * Initialisiert ein Onjekt der klasse game und startet den Sound 
          * @param pSheet 
@@ -29,6 +28,7 @@ public class Game implements KeyListener {
 	{
 		attacksound.start();
 		sheet = pSheet;
+		player.setSprite(new Sprite(200,100,34,55,18,6,sheet.getSpriteList().get(9).getPixel()));
 		Sound sound = new Sound("Sound",this.getClass().getClassLoader().getResourceAsStream("sound/3386-asian-drums-by-kevin-macleod.wav"));
 		sound.start();
 		sound.playing = true;
