@@ -22,23 +22,11 @@ class Sound extends Thread {
         }
         catch (Exception e) { e.printStackTrace(); }
     }
-    
-    public void start_LOOP()
-    {
-        clip.start();
-        clip.loop(Clip.LOOP_CONTINUOUSLY);        
-    }
+ 
    
     public boolean isRunning()
     {
         return clip.isRunning();
-    }
-   
-    public void Sound_Start()
-    {
-    	 Sound test; 
-    	 //test = new Sound(this.getClass().getClassLoader().getResourceAsStream("sound/Purple Planet Music - Space Journey (1_20).wav"));
-    	 //test.start_LOOP();
     }
 
 	@Override
