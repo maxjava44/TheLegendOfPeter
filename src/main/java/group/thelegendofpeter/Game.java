@@ -16,6 +16,10 @@ public class Game implements KeyListener {
 	Screen screen = new Screen();
 	int levelid = 11;
 	
+	 /**
+         * Initialisiert ein Onjekt der klasse game und startet den Sound 
+         * @param pSheet 
+         */
 	public Game(SpriteSheet pSheet)
 	{
 		sheet = pSheet;
@@ -30,6 +34,16 @@ public class Game implements KeyListener {
 		return screen;
 	}
 	
+	 /**
+         * Die For-Schleife sorgt dafür, dass die folgenden Methoden für jedes einzelne MobObjekt in der ArrayList ausgeführt werden
+         * Die Methode berechnet mithilfe von Pythagoras die Distanz zwischen einem Mob und dem Player 
+         * Wenn ein Mob links, rechts, unten oder oben vom Player aus steht, bewegt sich der Mob auf den Player zu
+         * Wenn sich die Hitboxen vom Player und einem Mob berühren wird der Mob auf seine vorherige Position zurückgesetzt  
+         * Solange der Abstand zwischen dem Player und einem Mob einen bestimmten Wert unterschreitet, verliert der Player Leben gleich des Schadens den ein Mob verursacht
+         * Wenn ein Mob stirbt, wird das Objekt des Mobs aus der MobArrayList entfernt, sowie sein Sprite aus der SpriteArrayList
+         * 
+         * Die Methode überprüft ob der Player gestorben ist
+         */
 	public void doLogic()
 	{
             for(Mob mob : mobs)
