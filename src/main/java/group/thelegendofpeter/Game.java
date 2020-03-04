@@ -20,6 +20,7 @@ public class Game implements KeyListener {
 	long playertimediff = 1500;
 	long playerattackedtime;
 	Sound attacksound = new Sound("AttackSound",this.getClass().getClassLoader().getResourceAsStream("sound/Windows Ding.wav"));
+	private boolean notfirstrun = false;
 	 /**
          * Initialisiert ein Onjekt der klasse game und startet den Sound 
          * @param pSheet 
@@ -140,6 +141,7 @@ public class Game implements KeyListener {
     {
         mobs.clear();
     	sprites.clear();
+	sprites.add(player.getSprite());
         try{
         	screen.setBackground(new Sprite(0,0,0,0,0,0,ImageIO.read(this.getClass().getClassLoader().getResource(levelid+".png")).getRGB(0,0,768,768,null,0,768)));
             BufferedReader levelfile = new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("level" + levelid)));
@@ -178,7 +180,30 @@ public class Game implements KeyListener {
             }
             mobfile.close();
             levelfile.close();
-            player.setSprite(sprites.get(0));
+	    if(notfirstrun)
+            {
+            if(player.getSprite().getX()<700 && player.getSprite().getY()<=0)
+            {
+            	player.getSprite().setY(700);
+            	return;
+            }
+            if(player.getSprite().getX()>700 && player.getSprite().getY()<700)
+            {
+            	player.getSprite().setX(50);
+            	return;
+            }
+            if(player.getSprite().getY()>700 && player.getSprite().getX()<700)
+            {
+            	player.getSprite().setY(100);
+            	return;
+            }
+            if(player.getSprite().getX()<=0 && player.getSprite().getY()<700)
+            {
+            	player.getSprite().setX(700);
+            	return;
+            }
+            }
+            notfirst = true;
         }catch(Exception e)
         {
             e.printStackTrace();
