@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>group.6</groupId>
     <artifactId>TheLegendOfPeter</artifactId>
-    <version>ALPAKA</version>
+    <version>BIBER</version>
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
