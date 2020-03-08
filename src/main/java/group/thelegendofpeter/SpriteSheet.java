@@ -48,7 +48,13 @@ public class SpriteSheet {
 			System.out.println("Lesen des SpriteSheets unmöglich");
 		}
 	}
-
+        
+	
+	/**
+	 * Gibt die Spriteliste zurück
+	 * 
+	 * @return die Spriteliste
+	 */
 	public ArrayList<Sprite> getSpriteList() {
 		return sprites;
 	}
