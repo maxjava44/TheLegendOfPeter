@@ -22,7 +22,7 @@ public class Game implements KeyListener {
 	Sound attacksound = new Sound("AttackSound",this.getClass().getClassLoader().getResourceAsStream("sound/Attack.wav"));
 	private boolean notfirstrun = false;
 	 /**
-         * Initialisiert ein Onjekt der klasse game und startet den Sound 
+         * Initialisiert ein Objekt der klasse game und startet den Sound 
          * @param pSheet 
          */
 	public Game(SpriteSheet pSheet)
