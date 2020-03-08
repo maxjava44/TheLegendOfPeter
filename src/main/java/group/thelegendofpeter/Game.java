@@ -292,7 +292,6 @@ public class Game implements KeyListener {
 			if (e.getKeyChar() == 'l') // startet den attacksound wenn der spieler "l" drückt
 			{
 				attacksound.setPlaying(true);
-                                attacksound.playing = true; //Sound darf abgespielt werden
                                 attacksound.Microposi_null_erlaubt = true; // "Micro" darf einmal auf 0 gestzt werden
                                 attacksound.SoundArtAttack = true; // Es wird ein Attacksound abgespielt == kein loop
                                 
