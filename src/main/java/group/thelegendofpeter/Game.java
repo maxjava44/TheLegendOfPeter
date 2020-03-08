@@ -38,7 +38,7 @@ public class Game implements KeyListener {
 		attacksound.start();
 		sheet = pSheet;
 		player.setSprite(new Sprite(200, 300, 34, 55, 18, 6, sheet.getSpriteList().get(9).getPixel()));
-		Sound sound = new Sound("Sound", this.getClass().getClassLoader().getResourceAsStream("sound/3386-asian-drums-by-kevin-macleod.wav"));
+		Sound sound = new Sound("Sound",this.getClass().getClassLoader().getResourceAsStream("sound/4289-rising-game-by-kevin-macleod.wav"));
 		sound.start();
 		sound.setPlaying(true);
 	}
