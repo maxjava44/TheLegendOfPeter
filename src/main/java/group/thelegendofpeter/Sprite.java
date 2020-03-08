@@ -2,6 +2,7 @@ package group.thelegendofpeter;
 
 /**
  * Ein Sprite beinhaltet die Informationen zur Darstellung und für die Hitboxen
+ * 
  * @author Maximilian Gilsoul
  *
  */
@@ -36,42 +37,89 @@ public class Sprite {
 		pixel = pPixel;
 	}
 
+	/**
+	 * Gibt die Pixel des Sprites zurück
+	 * 
+	 * @return die Pixel
+	 */
 	public int[] getPixel() {
 		return pixel;
 	}
 
+	/**
+	 * Setzt die Pixel
+	 * 
+	 * @param pPixel die Pixel die zu setzen sind
+	 */
 	public void setPixel(int[] pPixel) {
 		pixel = pPixel;
 	}
 
+	/**
+	 * Gibt die Höhe der Hitbox zurück
+	 * 
+	 * @return Die Höhe der Hitbox
+	 */
 	public int getHeight() {
 		return height;
 	}
 
+	/**
+	 * Gibt die Breite der Hitbox zurück
+	 * 
+	 * @return Die Breite der Hitbox
+	 */
 	public int getWidth() {
 		return width;
 	}
 
+	/**
+	 * Gibt den X-Offset der Hitbox zurück
+	 * 
+	 * @return Den X-Offset der Hitbox
+	 */
 	public int getxHitbox() {
 		return xHitboxOffset;
 	}
 
+	/**
+	 * Gibt den Y-Offset der Hitbox zurück
+	 * 
+	 * @return Den Y-Offset der Hitbox
+	 */
 	public int getyHitbox() {
 		return yHitboxOffset;
 	}
+
+	/**
+	 * Gibt die X-Koordinate zurück
+	 * 
+	 * @return Die X-Koordinate
+	 */
 
 	public int getX() {
 		return x;
 	}
 
+	/**
+	 * Gibt die Y-Koordinate zurück
+	 * 
+	 * @return Die Y-Koordinate
+	 */
 	public int getY() {
 		return y;
 	}
 
+	/**
+	 * Setzt die X-Koordinate
+	 */
 	public void setX(int pX) {
 		x = pX;
 	}
 
+	/**
+	 * Setzt die Y-Koordinate
+	 */
 	public void setY(int pY) {
 		y = pY;
 	}
