@@ -267,12 +267,12 @@ public class Game implements KeyListener {
 				}
 				if(e.getKeyChar() != 'l') //stoppt den attacksound wenn der spieler weiter läuft
 				{
-                                     attacksound.playing = false;
+                                     attacksound.setPlaying(false);
                                 }        
 				
 				if(e.getKeyChar() == 'l') //startet den attacksound wenn der spieler "l" drückt
 				{
-					 attacksound.playing = true;
+					attacksound.setPlaying(true);
 					for(Mob mob : mobs)
 					{
 						if(mob.getDistance() < 80.0 && playertimediff >= 1500)
