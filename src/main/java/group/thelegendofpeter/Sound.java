@@ -16,6 +16,8 @@ class Sound extends Thread {
 
 	private Clip clip;
 	public boolean playing = false;
+        public boolean Microposi_null_erlaubt = false; //Micro darf ebenfalls nicht auf 0 gesetzt werden
+        public boolean SoundArtAttack = false; // Standardsound = loopsound
 
 	/**
 	 * Erstellt den Sound aus einen InputStream
@@ -50,7 +52,21 @@ class Sound extends Thread {
 	public void run() {
 		while (true) {
 			if (playing) {
+				 if (SoundArtAttack==true) // Was für ein Sound wird gesucht? Loop oder einzeln
+                            {
+                                     clip.start();                     
+                                    
+                                    if (Microposi_null_erlaubt==true)
+                                    {
+                                    clip.setMicrosecondPosition(0);                   
+                                    Microposi_null_erlaubt=false;
+                                    }                 
+                            }
+                            else
+                            {                                    
 				clip.loop(Clip.LOOP_CONTINUOUSLY);
+                            }
+                                 
 			} else {
 				clip.stop();
 				clip.setMicrosecondPosition(0);
