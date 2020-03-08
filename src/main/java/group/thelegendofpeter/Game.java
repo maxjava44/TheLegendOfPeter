@@ -270,7 +270,6 @@ public class Game implements KeyListener {
 			switch (e.getKeyChar()) {
 			case 'w':
 				player.getSprite().setY(player.getSprite().getY() - player.getSpeed());
-				// player.setHealth(player.getHealth() -10);
 				break;
 			case 's':
 				player.getSprite().setY(player.getSprite().getY() + player.getSpeed());
