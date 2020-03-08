@@ -1,5 +1,10 @@
 package group.thelegendofpeter;
 
+/**
+ * Stellt ein Player da
+ * @author Maximilian Gilsoul
+ *
+ */
 public class Player extends Character {
 	/**
 	 * Erstellt ein Player-Objekt mit den gegebenen Daten
