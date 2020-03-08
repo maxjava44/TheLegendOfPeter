@@ -19,7 +19,7 @@ public class Game implements KeyListener {
 	long attackedtime;
 	long playertimediff = 1500;
 	long playerattackedtime;
-	Sound attacksound = new Sound("AttackSound",this.getClass().getClassLoader().getResourceAsStream("sound/Windows Ding.wav"));
+	Sound attacksound = new Sound("AttackSound",this.getClass().getClassLoader().getResourceAsStream("sound/Attack.wav"));
 	private boolean notfirstrun = false;
 	 /**
          * Initialisiert ein Onjekt der klasse game und startet den Sound 
