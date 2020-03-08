@@ -32,7 +32,7 @@ public class Game implements KeyListener {
 		player.setSprite(new Sprite(200,300,34,55,18,6,sheet.getSpriteList().get(9).getPixel()));
 		Sound sound = new Sound("Sound",this.getClass().getClassLoader().getResourceAsStream("sound/3386-asian-drums-by-kevin-macleod.wav"));
 		sound.start();
-		sound.playing = true;
+		sound.setPlaying(true);
 	}
 	
 	public Screen getScreen()
