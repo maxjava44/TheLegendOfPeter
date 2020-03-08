@@ -15,7 +15,7 @@ import javax.sound.sampled.Clip;
 class Sound extends Thread {
 
 	private Clip clip;
-	private boolean playing = false;
+	public boolean playing = false;
 
 	/**
 	 * Erstellt den Sound aus einen InputStream
