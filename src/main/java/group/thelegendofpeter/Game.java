@@ -292,11 +292,17 @@ public class Game implements KeyListener {
 		}
 		playertimediff = milliseconds - playerattackedtime;
 	}
-
+	
+	/**
+	 * Leer da nicht benötigt aber sonst kann Game kein KeyListener sein
+	 */
 	@Override
 	public void keyReleased(KeyEvent e) {
 	}
-
+	
+	/**
+	 * Leer da nicht benötigt aber sonst kann Game kein KeyListener sein
+	 */
 	@Override
 	public void keyTyped(KeyEvent e) {
 	}
