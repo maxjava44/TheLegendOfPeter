@@ -1,5 +1,10 @@
 package group.thelegendofpeter;
 
+/**
+ * Stellt ein Charakter da
+ * @author Maximilian Gilsoul
+ *
+ */
 public class Character {
 	private Sprite sprite;
 	private int speed;
