@@ -8,6 +8,12 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+/**
+ * Ein Spritesheet ist eine Datei welche alle Sprites beinhaltet
+ * 
+ * @author Maximilian Gilsoul
+ *
+ */
 public class SpriteSheet {
 	private ArrayList<Sprite> sprites = new ArrayList<Sprite>();
 
