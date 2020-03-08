@@ -1,5 +1,10 @@
 package group.thelegendofpeter;
 
+/**
+ * Ein Sprite beinhaltet die Informationen zur Darstellung und für die Hitboxen
+ * @author Maximilian Gilsoul
+ *
+ */
 public class Sprite {
 	private int x;
 	private int y;
