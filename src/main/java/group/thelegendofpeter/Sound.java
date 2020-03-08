@@ -15,7 +15,7 @@ import javax.sound.sampled.Clip;
 class Sound extends Thread {
 
 	private Clip clip;
-	public boolean playing = false;
+	private boolean playing = false;
         public boolean Microposi_null_erlaubt = false; //Micro darf ebenfalls nicht auf 0 gesetzt werden
         public boolean SoundArtAttack = false; // Standardsound = loopsound
 
