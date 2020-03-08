@@ -297,14 +297,16 @@ public class Game implements KeyListener {
 	 * Leer da nicht benötigt aber sonst kann Game kein KeyListener sein
 	 */
 	@Override
-	public void keyReleased(KeyEvent e)//Siehe Javadoc {
+	public void keyReleased(KeyEvent e)//Siehe Javadoc 
+	{
 	}
 	
 	/**
 	 * Leer da nicht benötigt aber sonst kann Game kein KeyListener sein
 	 */
 	@Override
-	public void keyTyped(KeyEvent e)//Siehe Javadoc {
+	public void keyTyped(KeyEvent e)//Siehe Javadoc 
+	{
 	}
 
 	/**
