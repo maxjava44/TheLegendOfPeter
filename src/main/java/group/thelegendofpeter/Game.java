@@ -19,14 +19,14 @@ public class Game implements KeyListener {
 	private Player player = new Player(null, 10, 100, 10, false);
 	private CopyOnWriteArrayList<Mob> mobs = new CopyOnWriteArrayList<Mob>();
 	private CopyOnWriteArrayList<Sprite> sprites = new CopyOnWriteArrayList<Sprite>();
-	SpriteSheet sheet;
-	Screen screen = new Screen();
-	int levelid = 11;
-	long timediff = 1500;
-	long attackedtime;
-	long playertimediff = 1500;
-	long playerattackedtime;
-	Sound attacksound = new Sound("AttackSound", this.getClass().getClassLoader().getResourceAsStream("sound/Attack.wav"));
+	private SpriteSheet sheet;
+	private Screen screen = new Screen();
+	private int levelid = 11;
+	private long timediff = 1500;
+	private long attackedtime;
+	private long playertimediff = 1500;
+	private long playerattackedtime;
+	private Sound attacksound = new Sound("AttackSound", this.getClass().getClassLoader().getResourceAsStream("sound/Attack.wav"));
 	private boolean notfirstrun = false;
 
 	/**
