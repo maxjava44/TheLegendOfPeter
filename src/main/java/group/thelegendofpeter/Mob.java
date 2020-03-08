@@ -1,5 +1,10 @@
 package group.thelegendofpeter;
 
+/**
+ * Stellt ein Mob da
+ * @author Maximilian Gilsoul
+ *
+ */
 public class Mob extends Character {
 
 	private double distance;
