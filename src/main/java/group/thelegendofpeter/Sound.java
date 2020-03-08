@@ -14,9 +14,15 @@ import javax.sound.sampled.Clip;
  */
 class Sound extends Thread {
 
-	Clip clip;
-	boolean playing = false;
+	private Clip clip;
+	private boolean playing = false;
 
+	/**
+	 * Erstellt den Sound aus einen InputStream
+	 * 
+	 * @param name   Der Name des Threads
+	 * @param stream Der Inputstream der Sounddatei
+	 */
 	public Sound(String name, InputStream stream) {
 		super(name);
 		try {
@@ -27,7 +33,19 @@ class Sound extends Thread {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Setzt den Spielzustand
+	 * 
+	 * @param pPlaying Soll spielen oder nicht
+	 */
+	public void setPlaying(boolean pPlaying) {
+		playing = pPlaying;
+	}
+
+	/**
+	 * Loopt den Sound wenn er loopen soll
+	 */
 	@Override
 	public void run() {
 		while (true) {
