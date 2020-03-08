@@ -3,7 +3,7 @@ package group.thelegendofpeter;
 /**
  * Stellt ein Charakter da
  * @author Maximilian Gilsoul
- *
+ * @author Tristan Michels
  */
 public class Character {
 	private Sprite sprite;
