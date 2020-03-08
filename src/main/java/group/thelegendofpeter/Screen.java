@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * Verwaltet den Bildschirm Inhalt
+ * Verwaltet den Bildschirminhalt
  * 
  * @author Maximilian Gilsoul
  *
@@ -24,7 +24,7 @@ public class Screen {
 	}
 
 	/**
-	 * Baut den Bildschirm zusammen nachden Informationen in der Spriteliste
+	 * Baut den Bildschirm nach den Informationen in der Spriteliste zusammen
 	 */
 	public void assemble() {
 		for (int x = 0; x < 768; x++) {
