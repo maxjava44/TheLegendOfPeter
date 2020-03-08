@@ -96,7 +96,7 @@ public class Character {
 		if (health == 0) {
 			dead = true;
 		}
-		if (dead == true) {
+		if (dead) {
 			System.out.println("tot");
 		}
 		return dead;
