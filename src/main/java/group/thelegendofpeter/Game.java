@@ -151,7 +151,15 @@ public class Game implements KeyListener {
 		}
 		return false;
 	}
-
+	/**
+         * Die Methode lädt die Level, indem sie die jeweilige levelfile (Sprite, x-Koordinate, y-Koordinate), 
+	 * mobfile (Sprite, x-Koordinate, y-Koordinate, Speed, Health, Damage) und das jeweilige Hintergrundbild aufruft 
+	 * und mit einer while-Schleife solange ausliest, bis alle Objekte geladen wurden
+	 * <p>
+         * Die for-Schleife sorgt dafür, dass jedes MobObjekt sein Sprite zugeordnet bekommt
+	 * <p>
+         * An der Position, wo der Player das Level verlässt, startet der Player im nächsten Level
+         */
 	public void loadLevel() {
 		mobs.clear();
 		sprites.clear();
