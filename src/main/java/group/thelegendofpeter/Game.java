@@ -55,16 +55,25 @@ public class Game implements KeyListener {
 
 	/**
 	 * Die For-Schleife sorgt dafür, dass die folgenden Methoden für jedes einzelne
-	 * MobObjekt in der ArrayList ausgeführt werden Die Methode berechnet mithilfe
-	 * von Pythagoras die Distanz zwischen einem Mob und dem Player Wenn ein Mob
-	 * links, rechts, unten oder oben vom Player aus steht, bewegt sich der Mob auf
-	 * den Player zu Wenn sich die Hitboxen vom Player und einem Mob berühren wird
-	 * der Mob auf seine vorherige Position zurückgesetzt Solange der Abstand
-	 * zwischen dem Player und einem Mob einen bestimmten Wert unterschreitet,
-	 * verliert der Player Leben gleich des Schadens den ein Mob verursacht Wenn ein
-	 * Mob stirbt, wird das Objekt des Mobs aus der MobArrayList entfernt, sowie
-	 * sein Sprite aus der SpriteArrayList
+	 * MobObjekt in der ArrayList ausgeführt werden
+	 * <p>
+	 * Die Methode berechnet mithilfe von Pythagoras die Distanz zwischen einem Mob
+	 * und dem Player
+	 * <p>
+	 * Wenn ein Mob links, rechts, unten oder oben vom Player aus steht, bewegt sich
+	 * der Mob auf den Player zu
+	 * <p>
+	 * Wenn sich die Hitboxen vom Player und einem Mob berühren wird der Mob auf
+	 * seine vorherige Position zurückgesetzt
+	 * <p>
+	 * Solange der Abstand zwischen dem Player und einem Mob einen bestimmten Wert
+	 * unterschreitet, verliert der Player Leben gleich des Schadens den ein Mob
+	 * verursacht
+	 * <p>
+	 * Wenn ein Mob stirbt, wird das Objekt des Mobs aus der MobArrayList entfernt,
+	 * sowie sein Sprite aus der SpriteArrayList
 	 * 
+	 * <p>
 	 * Die Methode überprüft ob der Player gestorben ist
 	 */
 	public void doLogic() {
@@ -210,7 +219,7 @@ public class Game implements KeyListener {
 	 * Prüft ob die Hitbox des gegebenen Sprites eine Hitbox berührt, die nicht die
 	 * eigene Hitbox ist
 	 * 
-	 * @param Der Sprite, welcher getestet wird
+	 * @param sprite Der Sprite, welcher getestet wird
 	 * @return Hat die Hitbox eines Sprites die Hitbox eines anderen Sprites
 	 *         berührt? (boolean)
 	 */
@@ -226,19 +235,29 @@ public class Game implements KeyListener {
 	}
 
 	/**
-	 * Die Methode kontrolliert die Eingaben. Wenn die w-Taste gedrückt wird läuft
-	 * der Player nach oben (Seine Position wird aktualisiert) Wenn die s-Taste
-	 * gedrückt wird läuft der Player nach unten (Seine Position wird aktualisiert)
+	 * Die Methode kontrolliert die Eingaben.
+	 * <p>
+	 * Wenn die w-Taste gedrückt wird läuft der Player nach oben (Seine Position
+	 * wird aktualisiert)
+	 * <p>
+	 * Wenn die s-Taste gedrückt wird läuft der Player nach unten (Seine Position
+	 * wird aktualisiert)
+	 * <p>
 	 * Wenn die a-Taste gedrückt wird läuft der Player nach links (Seine Position
-	 * wird aktualisiert) Wenn die d-Taste gedrückt wird läuft der Player nach
-	 * rechts (Seine Position wird aktualisiert) Wenn die Eingabe die l-Taste ist,
-	 * wird für jeden Mob überprüft, ob der Abstand zum Player einen bestimmten Wert
-	 * unterschreitet Wenn dem so ist, verliert der Mob Leben gleich dem
-	 * Angriffsschaden des Players Wenn der die Hitbox des Player eine Hitbox eines
-	 * anderen Objektes berührt, wird der Player auf seine vorherige Position
-	 * zurückgesetzt Wenn der Player an die Grenze eines Levels läuft, durch die er
-	 * nicht durchlaufen kann, wird der Player auf seine vorherige Position
-	 * zurückgesetzt
+	 * wird aktualisiert)
+	 * <p>
+	 * Wenn die d-Taste gedrückt wird läuft der Player nach rechts (Seine Position
+	 * wird aktualisiert)
+	 * <p>
+	 * Wenn die Eingabe die l-Taste ist, wird für jeden Mob überprüft, ob der
+	 * Abstand zum Player einen bestimmten Wert unterschreitet Wenn dem so ist,
+	 * verliert der Mob Leben gleich dem Angriffsschaden des Players
+	 * <p>
+	 * Wenn der die Hitbox des Player eine Hitbox eines anderen Objektes berührt,
+	 * wird der Player auf seine vorherige Position zurückgesetzt
+	 * <p>
+	 * Wenn der Player an die Grenze eines Levels läuft, durch die er nicht
+	 * durchlaufen kann, wird der Player auf seine vorherige Position zurückgesetzt
 	 * 
 	 * @param e
 	 */
@@ -292,20 +311,20 @@ public class Game implements KeyListener {
 		}
 		playertimediff = milliseconds - playerattackedtime;
 	}
-	
+
 	/**
 	 * Leer da nicht benötigt aber sonst kann Game kein KeyListener sein
 	 */
 	@Override
-	public void keyReleased(KeyEvent e)//Siehe Javadoc 
+	public void keyReleased(KeyEvent e)// Siehe Javadoc
 	{
 	}
-	
+
 	/**
 	 * Leer da nicht benötigt aber sonst kann Game kein KeyListener sein
 	 */
 	@Override
-	public void keyTyped(KeyEvent e)//Siehe Javadoc 
+	public void keyTyped(KeyEvent e)// Siehe Javadoc
 	{
 	}
 
@@ -318,3 +337,4 @@ public class Game implements KeyListener {
 		return player;
 	}
 }
+
