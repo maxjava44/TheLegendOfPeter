@@ -36,9 +36,10 @@ public class Game implements KeyListener {
 	 */
 	public Game(SpriteSheet pSheet) {
 		attacksound.start();
+		attacksound.SoundArtAttack = true;
 		sheet = pSheet;
 		player.setSprite(new Sprite(200, 300, 34, 55, 18, 6, sheet.getSpriteList().get(9).getPixel()));
-		Sound sound = new Sound("Sound",this.getClass().getClassLoader().getResourceAsStream("sound/4289-rising-game-by-kevin-macleod.wav"));
+		Sound sound = new Sound("Sound", this.getClass().getClassLoader().getResourceAsStream("sound/4289-rising-game-by-kevin-macleod.wav"));
 		sound.start();
 		sound.setPlaying(true);
 	}
@@ -294,14 +295,13 @@ public class Game implements KeyListener {
 			if (e.getKeyChar() != 'l') // stoppt den attacksound wenn der spieler weiter läuft
 			{
 				attacksound.setPlaying(false);
+				attacksound.Microposi_null_erlaubt = true; // "Micro" darf einmal auf 0 gestzt werden
 			}
 
 			if (e.getKeyChar() == 'l') // startet den attacksound wenn der spieler "l" drückt
 			{
 				attacksound.setPlaying(true);
-                                attacksound.Microposi_null_erlaubt = true; // "Micro" darf einmal auf 0 gestzt werden
-                                attacksound.SoundArtAttack = true; // Es wird ein Attacksound abgespielt == kein loop
-                                
+				attacksound.Microposi_null_erlaubt = true; // "Micro" darf einmal auf 0 gestzt werden
 				for (Mob mob : mobs) {
 					if (mob.getDistance() < 80.0 && playertimediff >= 1500) {
 						mob.setHealth(mob.getHealth() - player.getAttackDamage());
