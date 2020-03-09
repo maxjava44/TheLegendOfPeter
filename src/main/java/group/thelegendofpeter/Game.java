@@ -108,7 +108,7 @@ public class Game implements KeyListener {
 					mob.getSprite().setX(prevX);
 				}
 			}
-			if (distance < 60 && timediff >= 500) {
+			if (distance < 60 && timediff >= 1500) {
 				player.setHealth(player.getHealth() - mob.getAttackDamage());
 				attackedtime = System.currentTimeMillis();
 				timediff = 0;
@@ -302,7 +302,7 @@ public class Game implements KeyListener {
 				attacksound.setPlaying(true);
 				attacksound.Microposi_null_erlaubt = true; // "Micro" darf einmal auf 0 gestzt werden
 				for (Mob mob : mobs) {
-					if (mob.getDistance() < 80.0 && playertimediff >= 1500) {
+					if (mob.getDistance() < 80.0 && playertimediff >= 500) {
 						mob.setHealth(mob.getHealth() - player.getAttackDamage());
 						playerattackedtime = System.currentTimeMillis();
 						playertimediff = 0;
