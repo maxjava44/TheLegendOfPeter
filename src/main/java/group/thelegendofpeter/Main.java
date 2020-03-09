@@ -160,8 +160,4 @@ public class Main extends Canvas implements Runnable {
 		bshealth.show();
 	}
 
-	public static void main(String args[]) // Startet das Spiel
-	{
-		new Main().start();
-	}
 }
