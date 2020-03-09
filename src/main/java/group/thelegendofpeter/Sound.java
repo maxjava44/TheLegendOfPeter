@@ -52,10 +52,10 @@ class Sound extends Thread {
 	public void run() {
 		while (true) {
 			if (playing) {
-				if (SoundArtAttack == true) // Was für ein Sound wird gesucht? Loop oder einzeln
+				if (SoundArtAttack) // Was für ein Sound wird gesucht? Loop oder einzeln
 				{
 					clip.start();
-					if (Microposi_null_erlaubt == true) {
+					if (Microposi_null_erlaubt) {
 						clip.setMicrosecondPosition(0);
 						Microposi_null_erlaubt = false;
 					}
