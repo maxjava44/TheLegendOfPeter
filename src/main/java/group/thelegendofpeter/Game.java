@@ -113,7 +113,6 @@ public class Game implements KeyListener {
 				attackedtime = System.currentTimeMillis();
 				timediff = 0;
 			}
-			System.out.println(distance);
 			if (mob.isDead()) {
 				mobs.remove(mob);
 				sprites.remove(mob.getSprite());
