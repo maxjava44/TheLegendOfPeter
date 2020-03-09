@@ -78,6 +78,12 @@ public class Game implements KeyListener {
 	 * Die Methode überprüft ob der Player gestorben ist
 	 */
 	public void doLogic() {
+		if(levelid == 22 && mobs.isEmpty())
+		{
+			sprites.clear();
+			sprites.add(new Sprite(160,300,64,64,0,0,sheet.getSpriteList().get(10).getPixel()));
+			sprites.add(player.getSprite());
+		}
 		long milliseconds = System.currentTimeMillis();
 		for (Mob mob : mobs) {
 			int dx = player.getSprite().getX() - mob.getSprite().getX();
