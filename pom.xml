@@ -21,7 +21,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>group.thelegendofpeter.Main</mainClass>
+                            <mainClass>group.thelegendofpeter.Menu</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
