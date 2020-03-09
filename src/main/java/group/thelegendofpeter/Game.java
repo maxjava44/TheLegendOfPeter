@@ -24,7 +24,7 @@ public class Game implements KeyListener {
 	private int levelid = 11;
 	private long timediff = 1500;
 	private long attackedtime;
-	private long playertimediff = 1500;
+	private long playertimediff = 500;
 	private long playerattackedtime;
 	private Sound attacksound = new Sound("AttackSound", this.getClass().getClassLoader().getResourceAsStream("sound/Attack.wav"));
 	private boolean notfirstrun = false;
@@ -108,7 +108,7 @@ public class Game implements KeyListener {
 					mob.getSprite().setX(prevX);
 				}
 			}
-			if (distance < 60 && timediff >= 1500) {
+			if (distance < 60 && timediff >= 500) {
 				player.setHealth(player.getHealth() - mob.getAttackDamage());
 				attackedtime = System.currentTimeMillis();
 				timediff = 0;
